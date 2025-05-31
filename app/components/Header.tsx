@@ -1,46 +1,22 @@
 import Link from "next/link";
-import Image from "next/image";
-import printforgeLogo from "@/public/printforge-logo-1.png";
-import artboard1 from "@/public/Artboard1.png";
+
+
 export default function Header() {
   return (
-    <header className="bg-white shadow-md">
-      <nav className="container mx-auto px-4 py-4">
-        <div className="flex items-center justify-between">
-          <div className="relative">
-            <Image
-              src={printforgeLogo}
-              alt="Logo"
-              className="w-[200px] h-auto hidden md:block"
-            ></Image>
-            <Image
-              src={artboard1}
-              alt="Logo"
-              className="w-[40px] h-auto block md:hidden"
-            />
-          </div>
-          <ul className="flex space-x-10">
-            <li>
-              <Link href="/" className="text-gray-600 hover:text-blue-600">
-                Home
-              </Link>
-            </li>
-            <li>
-              <Link href="/about" className="text-gray-600 hover:text-blue-600">
-                About
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/contact"
-                className="text-gray-600 hover:text-blue-600"
-              >
-                Contact
-              </Link>
-            </li>
-          </ul>
-        </div>
-      </nav>
+    <header className="fixed top-0 left-0 w-full z-50 bg-background/70 backdrop-blur-md border-b border-gray-200">
+    <div className="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+      {/* Логотип или название */}
+      <Link href="/" className="text-xl md:text-2xl font-serif text-graphite tracking-wide">
+        Aelora Botanicals
+      </Link>
+
+        {/* Навигация — можно оставить один элемент или скрыть */}
+        <nav className="hidden md:flex items-center space-x-6 text-sm text-gray-700 uppercase tracking-wide">
+          <Link href="#about" className="hover:text-graphite transition">About</Link>
+          <Link href="#products" className="hover:text-graphite transition">Products</Link>
+          <Link href="#subscribe" className="hover:text-graphite transition">Subscribe</Link>
+        </nav>
+      </div>
     </header>
   );
 }

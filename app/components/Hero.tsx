@@ -1,0 +1,102 @@
+'use client';
+
+import Image from "next/image";
+import { useState, useEffect, useCallback } from "react";
+import { ChevronLeftIcon, ChevronRightIcon, PlayIcon, PauseIcon } from '@heroicons/react/24/solid';
+import { motion } from 'framer-motion';
+
+interface HeroSlide {
+  id: number;
+  imageSrc: string;
+  altText: string;
+  subtitle: string;
+  title: string;
+  description: string;
+}
+
+const heroSlidesData: HeroSlide[] = [
+  { id: 1, imageSrc: "/images/hero-image.png", altText: "Lucent Facial Refiner bottle", subtitle: "The skin—in its best light", title: "Introducing Lucent Facial Refiner", description: "A new gently exfoliating mask to even the texture and appearance of the skin." },
+  { id: 2, imageSrc: "/images/gallery1.png", altText: "Another Aesop Product", subtitle: "For body and mind", title: "Geranium Leaf Body Cleanser", description: "An invigorating, low-foaming gel cleanser for all skin types." },
+  { id: 3, imageSrc: "/images/gallery2.png", altText: "Yet Another Product", subtitle: "Daily protection", title: "Protective Facial Lotion SPF25", description: "A broad-spectrum moisturising lotion that shields skin from UVA and UVB rays." },
+];
+
+export default function Hero() {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isPlaying, setIsPlaying] = useState(true);
+
+  const currentSlide = heroSlidesData[currentIndex];
+
+  const handleNext = useCallback(() => {
+    setCurrentIndex((prev) => (prev + 1) % heroSlidesData.length);
+  }, []);
+
+  const handlePrev = useCallback(() => {
+    setCurrentIndex((prev) => (prev - 1 + heroSlidesData.length) % heroSlidesData.length);
+  }, []);
+
+  const togglePlay = () => {
+    setIsPlaying(!isPlaying);
+  };
+
+  useEffect(() => {
+    let timer: NodeJS.Timeout;
+    if (isPlaying) {
+      timer = setTimeout(() => {
+        handleNext();
+      }, 5000);
+    }
+    return () => clearTimeout(timer);
+  }, [currentIndex, isPlaying, handleNext]);
+
+  return (
+    <section className="relative min-h-screen flex flex-col lg:flex-row lg:items-stretch">
+      <div className="relative w-full h-[60vh] md:h-[85vh] lg:order-2 lg:w-1/2 lg:h-screen">
+        {heroSlidesData.map((slide, index) => (
+          <motion.div
+            key={slide.id}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: index === currentIndex ? 1 : 0 }}
+            transition={{ duration: 0.8, ease: "easeInOut" }}
+            className="absolute inset-0"
+          >
+            <Image
+              src={slide.imageSrc}
+              alt={slide.altText}
+              layout="fill"
+              objectFit="cover"
+              priority={index === 0}
+            />
+          </motion.div>
+        ))}
+        <div className="absolute inset-0 bg-black/30 lg:bg-black/10"></div>
+      </div>
+
+      <div className="relative flex-1 flex flex-col justify-between p-6 md:p-8 bg-linens text-graphite lg:order-1 lg:w-1/2 lg:justify-center lg:items-start lg:text-left lg:p-12 xl:p-24">
+        <div className="lg:max-w-md xl:max-w-lg mx-auto lg:mx-0">
+          <p className="text-sm mb-2">{currentSlide.subtitle}</p>
+          <h1 className="text-3xl md:text-4xl lg:text-5xl font-serif mb-3 md:mb-4">{currentSlide.title}</h1>
+          <p className="text-base md:text-lg leading-relaxed text-gray-700">
+            {currentSlide.description}
+          </p>
+        </div>
+        
+        <div className="flex items-center justify-between mt-6 md:mt-8 lg:justify-start lg:mt-10">
+          <div className="flex items-center space-x-4">
+            <button onClick={handlePrev} aria-label="Previous slide" className="text-graphite hover:text-black">
+              <ChevronLeftIcon className="h-6 w-6" />
+            </button>
+            <span className="text-sm font-mono">
+              {String(currentIndex + 1).padStart(2, '0')} / {String(heroSlidesData.length).padStart(2, '0')}
+            </span>
+            <button onClick={handleNext} aria-label="Next slide" className="text-graphite hover:text-black">
+              <ChevronRightIcon className="h-6 w-6" />
+            </button>
+          </div>
+          <button onClick={togglePlay} aria-label={isPlaying ? "Pause slideshow" : "Play slideshow"} className="text-graphite hover:text-black">
+            {isPlaying ? <PauseIcon className="h-6 w-6" /> : <PlayIcon className="h-6 w-6" />}
+          </button>
+        </div>
+      </div>
+    </section>
+  );
+}
