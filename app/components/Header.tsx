@@ -7,7 +7,7 @@ export default function Header() {
     <div className="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
       {/* Логотип или название */}
       <Link href="/" className="text-xl md:text-2xl font-serif text-graphite tracking-wide">
-        Aelora Botanicals
+        AELORA
       </Link>
 
         {/* Навигация — можно оставить один элемент или скрыть */}

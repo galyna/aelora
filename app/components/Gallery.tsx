@@ -4,14 +4,8 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { useState, useEffect, useCallback } from "react";
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/24/outline';
+import { GalleryItem } from "../models/GalleryItem";
 
-// Тип для элемента галереи
-interface GalleryItem {
-  src: string;
-  alt: string;
-  title: string;
-  description: string;
-}
 
 // Хук для определения ширины окна и количества видимых слайдов
 const useVisibleSlides = () => {
@@ -76,16 +70,8 @@ const useIsMobile = () => {
   return isClient ? isMobile : getDefaultIsMobile();
 };
 
-export default function Gallery() {
-  const items: GalleryItem[] = [
-    { src: "/images/gallery1.png", alt: "Geranium Leaf Body Scrub", title: "Geranium Leaf Body Scrub", description: "An exfoliating cleanse" },
-    { src: "/images/gallery2.png", alt: "Shampoo", title: "Shampoo", description: "For soft, shiny, fragrant hair" },
-    { src: "/images/gallery1.png", alt: "Conditioner", title: "Conditioner", description: "For soft, smooth hair" },
-    { src: "/images/gallery2.png", alt: "Another Scrub", title: "Parsley Seed Facial Cleanser", description: "For a clarifying cleanse" },
-    { src: "/images/gallery1.png", alt: "Another Shampoo", title: "Classic Shampoo", description: "Gentle, for all hair types" },
-    { src: "/images/gallery1.png", alt: "Test 6", title: "Test Product 6", description: "Test desc 6" },
-    { src: "/images/gallery2.png", alt: "Test 7", title: "Test Product 7", description: "Test desc 7" },
-  ];
+export default function Gallery(props: { items: GalleryItem[] }) {
+  const { items } = props;
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isHovering, setIsHovering] = useState(false);
@@ -144,8 +130,8 @@ export default function Gallery() {
                             <Image
                                 src={item.src}
                                 alt={item.alt}
-                                width={300} 
-                                height={400}
+                                width={200} 
+                                height={200}
                                 sizes="(max-width: 767px) 90vw, (max-width: 1535px) 30vw, 23vw"
                                 className="object-contain max-h-full w-auto"
                                 priority={index < visibleSlides}

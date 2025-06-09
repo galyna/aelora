@@ -19,7 +19,7 @@ const dmSerif = DM_Serif_Display({
 
 
 export const metadata: Metadata = {
-  title: "Aelora Botanicals",
+  title: "Aelora",
   description: "Sensory skincare rooted in stillness. Crafted with care in Ukraine.",
   openGraph: {
     title: "Aelora Botanicals",
@@ -31,7 +31,7 @@ export const metadata: Metadata = {
         url: "/og-image.jpg", // помести красивую preview-картинку
         width: 1200,
         height: 630,
-        alt: "Aelora Botanicals Landing",
+        alt: "Aelora Landing",
       },
     ],
     type: "website",
