@@ -1,10 +1,10 @@
 'use client';
 
 import Image from "next/image";
-import { motion } from "framer-motion";
-import { useState, useEffect, useCallback } from "react";
+import { motion, useInView } from "framer-motion";
+import { useState, useEffect, useCallback, useRef } from "react";
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/24/outline';
-import { GalleryItem } from "../models/GalleryItem";
+import { GalleryItem as GalleryItemType } from "../models/GalleryItem";
 
 
 // Хук для определения ширины окна и количества видимых слайдов
@@ -39,45 +39,59 @@ const useVisibleSlides = () => {
   return isClient ? visibleSlides : getDefaultSlidesCount();
 };
 
-// НОВЫЙ ХУК для определения, является ли устройство мобильным
-const useIsMobile = () => {
-  const getDefaultIsMobile = useCallback(() => false as const, []);
-
-  const getIsMobileOnClient = useCallback(() => {
-    if (typeof window !== "undefined") {
-      return window.innerWidth < 765; 
-    }
-    return getDefaultIsMobile();
-  }, [getDefaultIsMobile]);
-
-  const [isMobile, setIsMobile] = useState<boolean>(getDefaultIsMobile());
-  const [isClient, setIsClient] = useState(false);
-
+function useIs2xl() {
+  const [is2xl, setIs2xl] = useState(false);
   useEffect(() => {
-    setIsClient(true);
-    
-    const updateIsMobile = () => {
-      setIsMobile(getIsMobileOnClient());
-    };
+    const check = () => setIs2xl(window.innerWidth >= 1536);
+    check();
+    window.addEventListener('resize', check);
+    return () => window.removeEventListener('resize', check);
+  }, []);
+  return is2xl;
+}
 
-    if (typeof window !== "undefined") {
-      window.addEventListener('resize', updateIsMobile);
-      updateIsMobile(); 
-      return () => window.removeEventListener('resize', updateIsMobile);
-    }
-  }, [getIsMobileOnClient]);
+function GalleryItem({ item, index, visibleSlides, className = "" }: { item: GalleryItemType, index: number, visibleSlides: number, className?: string }) {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-10% 0px" });
+  return (
+    <div
+      className={`flex-shrink-0 group ${className}`}
+      style={{ width: `${100 / visibleSlides}%` }}
+    >
+      <div ref={ref} className="relative w-full aspect-auto xl:aspect-square flex flex-col overflow-hidden group">
+        <div className="h-2/3 xl:h-4/5 bg-linen transition-colors  flex items-center justify-center">
+          <motion.div
+            key={item.src}
+            initial={{ y: -60, opacity: 0 }}
+            animate={isInView ? { y: 0, opacity: 1 } : { y: -60, opacity: 0 }}
+            transition={{ type: "spring", stiffness: 80, damping: 18 }}
+            className="w-full h-full flex items-center justify-center"
+          >
+            <Image
+              src={item.src}
+              alt={item.alt}
+              width={300}
+              height={300}
+              sizes="(max-width: 967px) 99vw, (max-width: 1535px) 25vw, 40vw"
+              className="object-contain max-h-full w-auto"
+              priority={index < visibleSlides}
+            />
+          </motion.div>
+        </div>
+        <div className="h-1/3 xl:h-1/5 bg-transparent transition-colors duration-500 group-hover:bg-linen flex flex-col items-start justify-center text-left px-8 py-8   ">
+          <h3 className="text-sm  lg:text-lg font-serif text-graphite mb-1 whitespace-normal break-words">{item.title}</h3>
+          <p className="text-sm  lg:text-lg text-gray-600 whitespace-normal break-words">{item.description}</p>
+        </div>
+      </div>
+    </div>
+  );
+}
 
-  return isClient ? isMobile : getDefaultIsMobile();
-};
-
-export default function Gallery(props: { items: GalleryItem[] }) {
-  const { items } = props;
-
+export default function Gallery({ items, generalDescription }: { items: GalleryItemType[], generalDescription?: { title: string, description: string } }) {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [isHovering, setIsHovering] = useState(false);
   const visibleSlides = useVisibleSlides();
-  const isMobile = useIsMobile(); // Используем новый хук
   const slideItemWidthPercentage = 100 / visibleSlides;
+  const is2xl = useIs2xl();
 
   const handleNext = () => {
     setCurrentIndex((prevIndex) => {
@@ -90,85 +104,84 @@ export default function Gallery(props: { items: GalleryItem[] }) {
     setCurrentIndex((prevIndex) => Math.max(prevIndex - 1, 0));
   };
 
-  // Обновленные условия для отображения кнопок
-  const showPrevButton = (isMobile && currentIndex > 0) || (!isMobile && isHovering && currentIndex > 0);
-  const showNextButton = (isMobile && currentIndex < items.length - visibleSlides) || (!isMobile && isHovering && currentIndex < items.length - visibleSlides);
+  const showPrevButton = currentIndex > 0;
+  const showNextButton = currentIndex < items.length - visibleSlides;
+
+  // Формируем коллекцию для отображения
+  const galleryItems: (GalleryItemType | { isGeneral: true; title: string; description: string })[] = is2xl && generalDescription
+    ? [{ isGeneral: true, title: generalDescription.title, description: generalDescription.description }, ...items]
+    : items;
 
   return (
     <section className="py-16 md:py-24  text-graphite overflow-x-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-12">
-         <h2 className="text-3xl md:text-4xl font-serif text-center">Formulations for Skin, Hair & Body</h2>
+      {/* Описание первого айтема только на маленьких экранах */}
+      <div className="block 2xl:hidden max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-8">
+        {generalDescription && (
+          <>
+            <h2 className="text-2xl font-serif text-center mb-2">{generalDescription.title}</h2>
+            <p className="text-base text-center text-gray-700">{generalDescription.description}</p>
+          </>
+        )}
       </div>
-
       <div
         className="relative"
-        onMouseEnter={() => !isMobile && setIsHovering(true)} // Ховер только на десктопе
-        onMouseLeave={() => !isMobile && setIsHovering(false)} // Ховер только на десктопе
         role="region"
         aria-roledescription="carousel"
         aria-label="Product gallery"
       >
         <div className="sr-only" aria-live="polite" aria-atomic="true">
-          {`Item ${currentIndex + 1} of ${items.length}: ${items[currentIndex]?.title || ''}`}
+          {`Item ${currentIndex + 1} of ${galleryItems.length}: ${galleryItems[currentIndex]?.title || ''}`}
         </div>
-
         <div className="overflow-hidden w-full">
             <motion.div
-                className="flex"
+                className="flex gap-x-2 md:gap-x-2"
                 animate={{ x: `-${currentIndex * slideItemWidthPercentage}%` }}
-                transition={{ type: "spring", stiffness: 200, damping: 25 }}
+                transition={{ type: "tween", duration: 0.7, ease: "easeInOut" }}
             >
-                {items.map((item, index) => (
-                <div
-                    key={index}
-                    className="flex-shrink-0"
-                    style={{ width: `${slideItemWidthPercentage}%` }}
-                >
-                    <div className="flex flex-col items-center text-center px-1 "> 
-                        <div className="bg-linen p-2 md:p-3 lg:p-4 2xl:p-4 w-full 
-                        aspect-[3/4] flex items-center justify-center mb-4 shadow-sm ">
-                            <Image
-                                src={item.src}
-                                alt={item.alt}
-                                width={200} 
-                                height={200}
-                                sizes="(max-width: 767px) 90vw, (max-width: 1535px) 30vw, 23vw"
-                                className="object-contain max-h-full w-auto"
-                                priority={index < visibleSlides}
-                            />
-                        </div>
-                        <div className="w-full">
-                            <h3 className="text-base md:text-lg font-medium text-graphite mb-1 truncate">{item.title}</h3>
-                            <p className="text-sm text-gray-600 truncate">{item.description}</p>
-                        </div>
+                {galleryItems.map((item, index) =>
+                  'isGeneral' in item ? (
+                    <div
+                      key="special"
+                      className="hidden 2xl:flex flex-shrink-0 aspect-square h-4/5 min-h-0 flex-col items-start  bg-transparent group"
+                      style={{ width: `${100 / visibleSlides}%` }}
+                    >
+                      <div className="flex-1  flex flex-col  items-start text-left py-8 pl-24 pr-8 gap-y-10">
+                        <h2 className="text-2xl md:text-4xl font-serif text-graphite">{item.title}</h2>
+                        <p className="text-lg md:text-xl text-gray-700 max-w-md mb-2">
+                          {item.description}
+                        </p>
+                       
+                      </div>
                     </div>
-                </div>
-                ))}
+                  ) : (
+                    <GalleryItem key={item.src} item={item} index={index} visibleSlides={visibleSlides} />
+                  )
+                )}
             </motion.div>
         </div>
 
         {showPrevButton && (
           <button
             onClick={handlePrev}
-            className="absolute top-1/2 left-4 md:left-8 transform -translate-y-1/2 bg-graphite/80 p-3 hover:bg-graphite transition z-10"
+            className="absolute top-1/2 left-4 md:left-8 transform -translate-y-1/2 bg-graphite/80 p-8 hover:bg-graphite transition z-10"
             aria-label="Previous slide"
           >
-            <ChevronLeftIcon className="h-5 w-5 text-white" />
+            <ChevronLeftIcon className="h-6 w-6 text-white" />
           </button>
         )}
         {showNextButton && (
           <button
             onClick={handleNext}
-            className="absolute top-1/2 right-4 md:right-8 transform -translate-y-1/2 bg-graphite/80 p-3 hover:bg-graphite transition z-10"
+            className="absolute top-1/2 right-4 md:right-8 transform -translate-y-1/2 bg-graphite/80 p-8 hover:bg-graphite transition z-10"
             aria-label="Next slide"
           >
-            <ChevronRightIcon className="h-5 w-5 text-white" />
+            <ChevronRightIcon className="h-6 w-6 text-white" />
           </button>
         )}
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="mt-8 md:mt-12">
+        <div className="mt-4 md:mt-8">
             <div className="w-full h-0.5 bg-gray-300 rounded-full overflow-hidden">
                 <motion.div
                 className="h-full bg-graphite"
