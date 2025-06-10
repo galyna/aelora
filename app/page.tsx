@@ -100,7 +100,7 @@ export default function Home() {
         order={1}
         description="Aelora Botanicals is a 
       sensorial skincare line rooted in nature, designed to ground you in calm and clarity. Our hand-blended oils and creams are created with minimal intervention and
-       maximum intention. Every formula is made in small batches, using plant-based ingredients and time-honored processes to nourish skin and spirit alike."
+       maximum intention. "
       />
 
       <Gallery
@@ -116,7 +116,7 @@ export default function Home() {
         subtitle="Mindful Rituals"
         title="Crafted for mindful rituals"
         order={2}
-        description="Aelora Botanicals is a sensorial skincare line rooted in nature, designed to ground you in calm and clarity. Our hand-blended oils and creams are created with minimal intervention and maximum intention. Every formula is made in small batches, using plant-based ingredients and time-honored processes to nourish skin and spirit alike."
+        description="Aelora Botanicals is a sensorial skincare line rooted in nature, designed to ground you in calm and clarity. Our hand-blended oils and creams are created with minimal intervention and maximum intention."
       />
 
       <SubscribeForm />
