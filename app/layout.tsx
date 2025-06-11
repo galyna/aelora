@@ -3,24 +3,21 @@ import Header from "./components/Header";
 import { Metadata } from "next";
 import Footer from "./components/Footer";
 import { Inter } from "next/font/google";
-import { DM_Serif_Display } from "next/font/google";
+import { Playfair_Display } from "next/font/google";
 
-const inter = Inter({
+const inter = Inter({ subsets: ["latin"] });
+const playfair = Playfair_Display({ 
   subsets: ["latin"],
-  weight: ["400", "500"],
-  variable: "--font-inter",
+  weight: ['400', '500', '600', '700'],
+  variable: '--font-playfair'
 });
-
-const dmSerif = DM_Serif_Display({
-  subsets: ["latin"],
-  weight: "400",
-  variable: "--font-serif",
-});
-
 
 export const metadata: Metadata = {
   title: "Aelora",
   description: "Sensory skincare rooted in stillness. Crafted with care in Ukraine.",
+  icons: {
+    icon: '/aelora_icon.ico',
+  },
   openGraph: {
     title: "Aelora Botanicals",
     description: "Handmade skincare rituals. Clean, vegan, minimal.",
@@ -45,7 +42,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.variable} ${dmSerif.variable} bg-background`}>
+      <body className={`${inter.className} ${playfair.variable} bg-background`}>
         <Header />
         {children}
         <Footer />
