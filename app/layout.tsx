@@ -3,13 +3,13 @@ import Header from "./components/Header";
 import { Metadata } from "next";
 import Footer from "./components/Footer";
 import { Inter } from "next/font/google";
-import { Playfair_Display } from "next/font/google";
+import { DM_Serif_Display } from "next/font/google";
 
 const inter = Inter({ subsets: ["latin"] });
-const playfair = Playfair_Display({ 
+const dmSerif = DM_Serif_Display({ 
   subsets: ["latin"],
-  weight: ['400', '500', '600', '700'],
-  variable: '--font-playfair'
+  weight: ['400'],
+  variable: '--font-dm-serif'
 });
 
 export const metadata: Metadata = {
@@ -42,7 +42,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.className} ${playfair.variable} bg-background`}>
+      <body className={`${inter.className} ${dmSerif.variable} bg-background`}>
         <Header />
         {children}
         <Footer />
