@@ -20,7 +20,7 @@ export default function SubscribeForm() {
   };
 
   return (
-    <section className="py-20 md:py-32  text-graphite">
+    <section id='subscribe' className="py-20 md:py-32  text-graphite">
       <div className="max-w-xl mx-auto px-6 text-center space-y-8">
         <h2 className="text-3xl md:text-4xl font-serif">
           Join the Ritual

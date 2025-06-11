@@ -78,16 +78,20 @@ function GalleryItem({ item, index, visibleSlides, className = "" }: { item: Gal
             />
           </motion.div>
         </div>
-        <div className="h-1/3 xl:h-1/5 bg-transparent transition-colors duration-500 group-hover:bg-linen flex flex-col items-start justify-center text-left px-8 py-8   ">
-          <h3 className="text-sm  lg:text-lg font-serif text-graphite mb-1 whitespace-normal break-words">{item.title}</h3>
-          <p className="text-sm  lg:text-lg text-gray-600 whitespace-normal break-words">{item.description}</p>
+        <div className="h-1/3 xl:h-1/5 bg-transparent transition-colors duration-500 group-hover:bg-linen flex flex-col items-start justify-center text-left px-8 py-8">
+          <h3 className="text-base lg:text-xl font-serif text-graphite mb-1 whitespace-normal break-words">{item.title}</h3>
+          <p className="text-base lg:text-lg text-gray-600 whitespace-normal break-words">{item.description}</p>
         </div>
       </div>
     </div>
   );
 }
 
-export default function Gallery({ items, generalDescription }: { items: GalleryItemType[], generalDescription?: { title: string, description: string } }) {
+export default function Gallery({ items, generalDescription, id }: { 
+  items: GalleryItemType[], 
+  generalDescription?: { title: string, description: string },
+  id?: string 
+}) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const visibleSlides = useVisibleSlides();
   const slideItemWidthPercentage = 100 / visibleSlides;
@@ -113,7 +117,7 @@ export default function Gallery({ items, generalDescription }: { items: GalleryI
     : items;
 
   return (
-    <section className="py-16 md:py-24  text-graphite overflow-x-hidden">
+    <section id={id} className="py-16 md:py-24  text-graphite overflow-x-hidden">
       {/* Описание первого айтема только на маленьких экранах */}
       <div className="block 2xl:hidden max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-8">
         {generalDescription && (
