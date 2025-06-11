@@ -39,7 +39,7 @@ export default function About({
           <div className="absolute inset-0 bg-black/30 lg:bg-black/10 pointer-events-none" />
         </div>
         <div
-          className={`relative flex-1 flex flex-col justify-center p-8 text-graphite xl:w-1/3 xl:h-full xl:justify-center xl:items-start xl:text-left xl:p-20 ${textOrder}`}
+          className={`relative flex-1 flex flex-col justify-center p-8 text-graphite xl:w-1/3 xl:h-full xl:justify-center xl:items-start xl:text-left xl:p-8 ${textOrder}`}
         >
           <div className="xl:max-w-lg mx-auto  w-full flex flex-col justify-center  gap-4 xl:gap-6">
             <p className="text-sm mb-2">{subtitle}</p>
