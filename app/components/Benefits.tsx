@@ -1,7 +1,7 @@
 import { FaLeaf, FaRecycle, FaHeart } from "react-icons/fa";
 export default function Benefits() {
   return (
-    <section className="py-12">
+    <section className="py-12 container mx-auto">
       {/* Преимущества */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center pt-12">
         <div className="space-y-3">

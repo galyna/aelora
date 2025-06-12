@@ -6,7 +6,7 @@ export default function Footer() {
   
       <div className="space-y-6">
         {/* Логотип или название */}
-        <h3 className="text-xl font-serif">Aelora Botanicals</h3>
+        <h3 className="text-xl font-serif">Aelora</h3>
 
         {/* Социальные иконки */}
         <div className="flex justify-center space-x-6  text-lg">
