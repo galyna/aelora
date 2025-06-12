@@ -9,66 +9,66 @@ import About from "./components/About";
 const skinItems: GalleryItem[] = [
   {
     src: "/images/g8.png",
-    alt: "Geranium Leaf Body Scrub",
-    title: "Geranium Leaf Body Scrub",
-    description: "Gentle exfoliation with natural ingredients for smooth, radiant skin",
+    alt: "Camellia Nut Facial Hydrating Cream",
+    title: "Camellia Nut Facial Hydrating Cream",
+    description: "For normal, dry and sensitive skin",
   },
   {
     src: "/images/g2.png",
-    alt: "Facial Cleanser",
-    title: "Facial Cleanser",
-    description: "Deep cleansing formula that removes impurities while maintaining skin's natural balance",
+    alt: "Parsley Seed Facial Cleanser",
+    title: "Parsley Seed Facial Cleanser",
+    description: "For normal, combination and troubled skin",
   },
   {
     src: "/images/g4.png",
-    alt: "Hydrating Serum",
-    title: "Hydrating Serum",
-    description: "Intensive hydration with hyaluronic acid and natural extracts",
+    alt: "Camellia Nut Facial Hydrating Cream",
+    title: "Camellia Nut Facial Hydrating Cream",
+    description: "For normal, dry and sensitive skin",
   },
   {
     src: "/images/g1.png",
-    alt: "Parsley Seed Facial Cleanser",
-    title: "Parsley Seed Facial Cleanser",
-    description: "Purifying cleanser with antioxidant-rich parsley seed extract",
+    alt: "Sage & Zinc Facial Hydrating Lotion SPF15",
+    title: "Sage & Zinc Facial Hydrating Lotion SPF15",
+    description: "For a wide range of skin types, including sensitive",
   },
   {
     src: "/images/g6.png",
-    alt: "Moisturizing Cream",
-    title: "Moisturizing Cream",
-    description: "Rich, nourishing cream that deeply hydrates and protects skin",
+    alt: "Exalted Eye Serum ",
+    title: "Exalted Eye Serum ",
+    description: "For sensitive, mature, dehydrated, dull and patchy skin",
   },
 ];
 
 const handItems: GalleryItem[] = [
   {
     src: "/images/g5.png",
-    alt: "Geranium Leaf Body Scrub",
-    title: "Geranium Leaf Body Scrub",
-    description: "An exfoliating cleanse",
+    alt: "Redemption Body Scrub",
+    title: "Redemption Body Scrub",
+    description: "For normal, dry and sensitive skin",
   },
   {
     src: "/images/g6.png",
-    alt: "Shampoo",
-    title: "Shampoo",
-    description: "For soft, shiny, fragrant hair",
+    alt: "Citrus Melange Body Cleanser",
+    title: "Citrus Melange Body Cleanser",
+    description: "Citrus, fresh",
   },
   {
     src: "/images/g3.png",
-    alt: "Conditioner",
-    title: "Conditioner",
-    description: "For soft, smooth hair",
+    alt: "Geranium Leaf Body Scrub",
+    title: "Geranium Leaf Body Scrub",
+    description: "Coarse-grain gel to cleanse and polish the skin",
   },
   {
     src: "/images/g7.png",
-    alt: "Another Scrub",
-    title: "Parsley Seed Facial Cleanser",
-    description: "For a clarifying cleanse",
+    alt: "Bathroom Essentials Bundle",
+    title: "Bathroom Essentials Bundle",
+    description: "A trio of much-loved formulations for hands and body",
   },
   {
     src: "/images/g4.png",
-    alt: "Conditioner",
-    title: "Conditioner",
-    description: "For soft, smooth hair",
+    alt: "Rejuvenate Intensive Body Balm",
+    title: "Rejuvenate Intensive Body Balm",
+    description: "Citrus, vanilla, woody",
   },
 ];
 
@@ -77,26 +77,19 @@ export default function Home() {
     <main>
       <Hero />
       <Benefits />
-
       <Gallery
         items={skinItems}
         id="skin"
         generalDescription={{
           title: "Skin Care",
           description:
-            "Our skincare formulations are crafted with natural ingredients to nourish, protect and enhance your skin's natural beauty. Each product is designed to provide a luxurious, sensorial experience while delivering effective results.",
+            "Skin is a living reflection of your rhythm—shaped by climate, habits, and nourishment. Our formulations respond intuitively to these shifts, helping you nurture lasting skin harmony.",
         }}
       />
       <About
-        image={{ src: "/images/hero2.jpeg", alt: "Aelora bottle" }}
+        image={{ src: "/images/hero4.png", alt: "Aelora bottle" }}
         subtitle="Mindful Rituals"
-        title={
-          <>
-            Crafted
-            for
-            mindful rituals
-          </>
-        }
+        title={<>Crafted for mindful rituals</>}
         order={1}
         description="Aelora  is a 
       sensorial skincare line rooted in nature, designed to ground you in calm and clarity. Our hand-blended oils and creams are created with minimal intervention and
@@ -109,19 +102,11 @@ export default function Home() {
         generalDescription={{
           title: "Formulations for Hand & Body",
           description:
-            "Our formulations are designed to nourish and protect your hair, leavingit feeling soft, smooth, and radiant.",
+            "Each Aelora formulation for hand and body is crafted to transform the everyday—cleansing and care become quiet rituals of presence and renewal.",
         }}
       />
-      <About
-        image={{ src: "/images/hero-image.png", alt: "Aelora bottle" }}
-        subtitle="Mindful Rituals"
-        title="Crafted for mindful rituals"
-        order={2}
-        description="Aelora Botanicals is a sensorial skincare line rooted in nature, designed to ground you in calm and clarity. Our hand-blended oils and creams are created with minimal intervention and maximum intention."
-      />
-
-      <Reviews />
       <SubscribeForm />
+      <Reviews />
     </main>
   );
 }

@@ -33,7 +33,7 @@ function ReviewCard({ name, role, text }: Review) {
   const isInView = useInView(ref, { once: true, margin: "-10% 0px" });
 
   return (
-    <div ref={ref} className="bg-background p-8 flex flex-col items-start justify-center text-left text-graphite">
+    <div ref={ref} className=" bg-linen p-8  flex flex-col items-start justify-center text-left text-graphite">
       <motion.div
         initial={{ y: -60, opacity: 0 }}
         animate={isInView ? { y: 0, opacity: 1 } : { y: -60, opacity: 0 }}
@@ -50,14 +50,14 @@ function ReviewCard({ name, role, text }: Review) {
 
 export default function Reviews() {
   return (
-    <section className="py-20">
-      <div className="w-full bg-linen py-40">
-        <div className="container mx-auto px-4">
-          <div className="max-w-6xl mx-auto px-6">
-            <h2 className="text-4xl md:text-5xl font-serif text-center mb-16 font-semibold">
+    <section className="">
+      <div className="w-full pt-20 p-60">
+        <div className=" container mx-auto px-4">
+          <div className="max-w-20xl mx-auto px-6 ">
+            <h2 className="text-4xl  md:text-5xl font-serif text-center mb-16 font-semibold">
             Their Words, Our Rituals
             </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="grid w-full grid-cols-1  lg:grid-cols-3 gap-8">
               {reviews.map((review, index) => (
                 <ReviewCard key={index} {...review} />
               ))}

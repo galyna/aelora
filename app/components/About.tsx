@@ -14,7 +14,6 @@ interface AboutProps {
 
 export default function About({
   image,
-  subtitle,
   title,
   description,
   order,
@@ -24,10 +23,10 @@ export default function About({
   const textOrder = order === 2 ? "xl:order-1" : "xl:order-2";
 
   return (
-    <section className="relative flex flex-col w-full">
-      <div className="flex flex-col xl:flex-row xl:items-stretch w-full xl:h-[40vh]">
+    <section className="relative flex flex-col w-full py-32">
+      <div className="flex flex-col xl:flex-row xl:items-stretch w-full xl:h-[50vh]">
         <div
-          className={`relative w-full h-[23vh] lg:h-[30vh] xl:h-full xl:w-2/3 ${imageOrder}`}
+          className={`relative w-full h-[33vh] lg:h-[36vh] xl:h-[50vh]  xl:w-2/3 ${imageOrder}`}
         >
           <Image
             src={image.src}
@@ -39,10 +38,10 @@ export default function About({
           <div className="absolute inset-0 bg-black/30 lg:bg-black/10 pointer-events-none" />
         </div>
         <div
-          className={`relative flex-1 flex flex-col justify-center p-8 text-graphite xl:w-1/3 xl:h-full xl:justify-center xl:items-start xl:text-left xl:p-8 ${textOrder}`}
+          className={`relative flex-1 flex flex-col  p-8 text-graphite xl:w-1/3 xl:h-full  xl:items-start xl:text-left xl:pl-24 ${textOrder}`}
         >
-          <div className="xl:max-w-lg mx-auto  w-full flex flex-col justify-center  gap-4 xl:gap-6">
-            <p className="text-sm mb-2">{subtitle}</p>
+          <div className="xl:max-w-lg   w-full flex flex-col   gap-4 xl:gap-6">
+            
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-serif mb-3 md:mb-4 leading-tight">
               {title}
             </h1>
