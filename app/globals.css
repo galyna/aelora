@@ -8,7 +8,7 @@ html {
 
 body {
   background-color: var(--background); /* или твой основной цвет фона, например #FDFCFB */
-  font-family: var(--font-inter), ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-family: var(--font-dm-sans), ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   color: var(--graphite); /* или твой основной цвет текста var(--foreground) */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -22,7 +22,7 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Для основного текста (описания продуктов, параграфы) лучше использовать sans-serif, как у Aesop */
 p, .text-description { /* Добавил .text-description как пример класса для описаний */
-  font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  font-family: var(--font-dm-sans), ui-sans-serif, system-ui, sans-serif;
   line-height: 1.65; /* Немного увеличим для читаемости */
   font-weight: 500; /* Убедимся, что это стандартное начертание */
 }
@@ -33,7 +33,15 @@ p, .text-description { /* Добавил .text-description как пример �
   font-weight: 500;
 }
 .font-custom-sans {
-  font-family: var(--font-inter);
+  font-family: var(--font-dm-sans);
   font-weight: 500;
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.animate-marquee {
+  animation: marquee 30s linear infinite;
 }
 

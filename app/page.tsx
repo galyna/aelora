@@ -9,33 +9,33 @@ import About from "./components/About";
 const skinItems: GalleryItem[] = [
   {
     src: "/images/g8.png",
-    alt: "Camellia Nut Facial Hydrating Cream",
-    title: "Camellia Nut Facial Hydrating Cream",
-    description: "For normal, dry and sensitive skin",
+    alt: "Camellia Nut Facial  Cream",
+    title: "Camellia Nut Facial  Cream",
+    description: "For normal, dry  skin",
   },
   {
     src: "/images/g2.png",
-    alt: "Parsley Seed Facial Cleanser",
-    title: "Parsley Seed Facial Cleanser",
-    description: "For normal, combination and troubled skin",
+    alt: "Parsley  Facial Cleanser",
+    title: "Parsley Facial Cleanser",
+    description: "For normal troubled skin",
   },
   {
     src: "/images/g4.png",
-    alt: "Camellia Nut Facial Hydrating Cream",
-    title: "Camellia Nut Facial Hydrating Cream",
-    description: "For normal, dry and sensitive skin",
+    alt: "Camellia Nut Facial Cream",
+    title: "Camellia Nut Facial Cream",
+    description: "For normal skin",
   },
   {
     src: "/images/g1.png",
-    alt: "Sage & Zinc Facial Hydrating Lotion SPF15",
-    title: "Sage & Zinc Facial Hydrating Lotion SPF15",
-    description: "For a wide range of skin types, including sensitive",
+    alt: "Zinc Facial Hydrating Lotion",
+    title: "Zinc Facial Hydrating Lotion ",
+    description: "For a wide range of skin types",
   },
   {
     src: "/images/g6.png",
     alt: "Exalted Eye Serum ",
     title: "Exalted Eye Serum ",
-    description: "For sensitive, mature, dehydrated, dull and patchy skin",
+    description: "For sensitive, mature, dehydrated",
   },
 ];
 
@@ -56,13 +56,13 @@ const handItems: GalleryItem[] = [
     src: "/images/g3.png",
     alt: "Geranium Leaf Body Scrub",
     title: "Geranium Leaf Body Scrub",
-    description: "Coarse-grain gel to cleanse and polish the skin",
+    description: "Coarse-grain gel to cleanse ",
   },
   {
     src: "/images/g7.png",
     alt: "Bathroom Essentials Bundle",
     title: "Bathroom Essentials Bundle",
-    description: "A trio of much-loved formulations for hands and body",
+    description: "A trio of much-loved formulations ",
   },
   {
     src: "/images/g4.png",

@@ -117,13 +117,13 @@ export default function Gallery({ items, generalDescription, id }: {
     : items;
 
   return (
-    <section id={id} className="py-16 md:py-24  text-graphite overflow-x-hidden">
+    <section id={id} className=" text-graphite overflow-x-hidden py-8 md:py-10 lg:py-14  2xl:py-16">
       {/* Описание первого айтема только на маленьких экранах */}
-      <div className="block 2xl:hidden max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-8">
+      <div className="block 2xl:hidden max-w-7xl mx-auto px-4 sm:px-6 pb-8 ">
         {generalDescription && (
           <>
-            <h2 className="text-2xl font-serif text-center mb-2">{generalDescription.title}</h2>
-            <p className="text-base text-center text-gray-700">{generalDescription.description}</p>
+            <h2 className="text-4xl font-serif text-center mb-4">{generalDescription.title}</h2>
+            <p className="text-lg text-center text-gray-700">{generalDescription.description}</p>
           </>
         )}
       </div>
@@ -136,9 +136,9 @@ export default function Gallery({ items, generalDescription, id }: {
         <div className="sr-only" aria-live="polite" aria-atomic="true">
           {`Item ${currentIndex + 1} of ${galleryItems.length}: ${galleryItems[currentIndex]?.title || ''}`}
         </div>
-        <div className="overflow-hidden w-full">
+        <div className="overflow-hidden w-full ">
             <motion.div
-                className="flex gap-x-2 md:gap-x-2"
+                className="flex gap-x-2 md:gap-x-2 "
                 animate={{ x: `-${currentIndex * slideItemWidthPercentage}%` }}
                 transition={{ type: "tween", duration: 0.7, ease: "easeInOut" }}
             >
@@ -146,7 +146,7 @@ export default function Gallery({ items, generalDescription, id }: {
                   'isGeneral' in item ? (
                     <div
                       key="special"
-                      className="hidden 2xl:flex flex-shrink-0 aspect-square h-4/5 min-h-0 flex-col items-start  bg-transparent group"
+                      className="hidden 2xl:flex flex-shrink-0 aspect-square h-3/5 min-h-0 flex-col items-start  bg-transparent group"
                       style={{ width: `${100 / visibleSlides}%` }}
                     >
                       <div className="flex-1  flex flex-col  items-start text-left py-8 pl-24 pr-8 gap-y-10">
