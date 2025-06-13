@@ -41,8 +41,8 @@ function ReviewCard({ name, role, text }: Review) {
         className="w-full"
       >
         <h3 className="text-xl font-serif mb-2 font-semibold">{name}</h3>
-        <p className="text-base text-gray-600 mb-4 font-serif">{role}</p>
-        <p className="text-lg text-gray-700 font-serif">&ldquo;{text}&rdquo;</p>
+        <p className="text-base  mb-4 font-serif">{role}</p>
+        <p className="text-lg ">&ldquo;{text}&rdquo;</p>
       </motion.div>
     </div>
   );
@@ -50,11 +50,11 @@ function ReviewCard({ name, role, text }: Review) {
 
 export default function Reviews() {
   return (
-    <section className="">
-      <div className="w-full pt-20 p-60">
+    <section className="pt-8 md:pt-8 lg:pt-10 2xl:pt-14 pb-16 md:pb-20 lg:pb-28  2xl:pb-32s">
+      <div className="w-full  ">
         <div className=" container mx-auto px-4">
           <div className="max-w-20xl mx-auto px-6 ">
-            <h2 className="text-4xl  md:text-5xl font-serif text-center mb-16 font-semibold">
+            <h2 className="text-4xl  font-serif text-center mb-16 ">
             Their Words, Our Rituals
             </h2>
             <div className="grid w-full grid-cols-1  lg:grid-cols-3 gap-8">

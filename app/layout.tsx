@@ -2,14 +2,18 @@ import "./globals.css";
 import Header from "./components/Header";
 import { Metadata } from "next";
 import Footer from "./components/Footer";
-import { Inter } from "next/font/google";
-import { DM_Serif_Display } from "next/font/google";
+import { DM_Serif_Display, DM_Sans } from "next/font/google";
 
-const inter = Inter({ subsets: ["latin"] });
 const dmSerif = DM_Serif_Display({ 
   subsets: ["latin"],
   weight: ['400'],
   variable: '--font-dm-serif'
+});
+
+const dmSans = DM_Sans({
+  subsets: ["latin"],
+  weight: ['400', '500', '700'],
+  variable: '--font-dm-sans'
 });
 
 export const metadata: Metadata = {
@@ -19,7 +23,7 @@ export const metadata: Metadata = {
     icon: '/aelora_icon.ico',
   },
   openGraph: {
-    title: "Aelora Botanicals",
+    title: "Aelora ",
     description: "Handmade skincare rituals. Clean, vegan, minimal.",
     url: "https://aelora.vercel.app", // замени при деплое
     siteName: "Aelora Botanicals",
@@ -42,7 +46,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.className} ${dmSerif.variable} bg-background`}>
+      <body className={`${dmSerif.variable} ${dmSans.variable} bg-background`}>
         <Header />
         {children}
         <Footer />

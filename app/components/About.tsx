@@ -23,10 +23,10 @@ export default function About({
   const textOrder = order === 2 ? "xl:order-1" : "xl:order-2";
 
   return (
-    <section className="relative flex flex-col w-full py-32">
+    <section className="relative flex flex-col w-full py-8 md:py-10 lg:py-14  2xl:py-16">
       <div className="flex flex-col xl:flex-row xl:items-stretch w-full xl:h-[50vh]">
         <div
-          className={`relative w-full h-[33vh] lg:h-[36vh] xl:h-[50vh]  xl:w-2/3 ${imageOrder}`}
+          className={`relative w-full h-[50vh] xl:h-full  xl:w-3/5 ${imageOrder}`}
         >
           <Image
             src={image.src}
@@ -38,15 +38,15 @@ export default function About({
           <div className="absolute inset-0 bg-black/30 lg:bg-black/10 pointer-events-none" />
         </div>
         <div
-          className={`relative flex-1 flex flex-col  p-8 text-graphite xl:w-1/3 xl:h-full  xl:items-start xl:text-left xl:pl-24 ${textOrder}`}
+          className={`relative flex-1 flex flex-col  px-8 pt-8 text-graphite xl:w-2/5 xl:h-full  xl:items-center xl:text-left xl:px-24 ${textOrder}`}
         >
-          <div className="xl:max-w-lg   w-full flex flex-col   gap-4 xl:gap-6">
+          <div className="xl:max-w-lg   w-full flex flex-col    2xl:gap-4">
             
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-serif mb-3 md:mb-4 leading-tight">
+            <h1 className="text-4xl font-serif mb-2 leading-tight">
               {title}
             </h1>
-            <div className="w-full border-t border-graphite my-4"></div>
-            <p className="text-base md:text-lg leading-relaxed text-gray-700">
+            <div className="w-full border-t border-graphite my-6  "></div>
+            <p className="text-base md:text-mg lg:text-lg 2xl:text-xl leading-relaxed text-gray-700">
               {description}
             </p>
           </div>
