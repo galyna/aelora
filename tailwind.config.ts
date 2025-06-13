@@ -16,7 +16,7 @@ const config: Config = {
         linen: '#F6F5E8',
       },
       fontFamily: {
-        sans: ['var(--font-inter)'],
+        sans: ['var(--font-dm-sans)'],
         serif: ['var(--font-dm-serif)'],
       },
     },
