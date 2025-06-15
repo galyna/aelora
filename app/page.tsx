@@ -8,31 +8,31 @@ import About from "./components/About";
 
 const skinItems: GalleryItem[] = [
   {
-    src: "/images/g8.png",
+    src: "/images/product8.webp",
     alt: "Camellia Nut Facial  Cream",
     title: "Camellia Nut Facial  Cream",
     description: "For normal, dry  skin",
   },
   {
-    src: "/images/g2.png",
+    src: "/images/product2.webp",
     alt: "Parsley  Facial Cleanser",
     title: "Parsley Facial Cleanser",
     description: "For normal troubled skin",
   },
   {
-    src: "/images/g4.png",
+    src: "/images/product4.webp",
     alt: "Camellia Nut Facial Cream",
     title: "Camellia Nut Facial Cream",
     description: "For normal skin",
   },
   {
-    src: "/images/g1.png",
+    src: "/images/product1.webp",
     alt: "Zinc Facial Hydrating Lotion",
     title: "Zinc Facial Hydrating Lotion ",
     description: "For a wide range of skin types",
   },
   {
-    src: "/images/g6.png",
+    src: "/images/product6.webp",
     alt: "Exalted Eye Serum ",
     title: "Exalted Eye Serum ",
     description: "For sensitive, mature, dehydrated",
@@ -41,31 +41,31 @@ const skinItems: GalleryItem[] = [
 
 const handItems: GalleryItem[] = [
   {
-    src: "/images/g5.png",
+    src: "/images/product5.webp",
     alt: "Redemption Body Scrub",
     title: "Redemption Body Scrub",
     description: "For normal, dry and sensitive skin",
   },
   {
-    src: "/images/g6.png",
+    src: "/images/product6.webp",
     alt: "Citrus Melange Body Cleanser",
     title: "Citrus Melange Body Cleanser",
     description: "Citrus, fresh",
   },
   {
-    src: "/images/g3.png",
+    src: "/images/product3.webp",
     alt: "Geranium Leaf Body Scrub",
     title: "Geranium Leaf Body Scrub",
     description: "Coarse-grain gel to cleanse ",
   },
   {
-    src: "/images/g7.png",
+    src: "/images/product7.webp",
     alt: "Bathroom Essentials Bundle",
     title: "Bathroom Essentials Bundle",
     description: "A trio of much-loved formulations ",
   },
   {
-    src: "/images/g4.png",
+    src: "/images/product4.webp",
     alt: "Rejuvenate Intensive Body Balm",
     title: "Rejuvenate Intensive Body Balm",
     description: "Citrus, vanilla, woody",
@@ -87,7 +87,7 @@ export default function Home() {
         }}
       />
       <About
-        image={{ src: "/images/hero4.png", alt: "Aelora bottle" }}
+        image={{ src: "/images/hero4.webp", alt: "Aelora about" }}
         subtitle="Mindful Rituals"
         title={<>Crafted for mindful rituals</>}
         order={1}
