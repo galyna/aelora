@@ -72,9 +72,9 @@ export default function Hero() {
 
   return (
     <section className="relative flex flex-col w-full border-t  border-gray-200">
-      <div className="flex flex-col xl:h-[50vh] xl:flex-row xl:items-stretch w-full">
+      <div className="flex flex-col xl:h-[60vh] xl:flex-row xl:items-stretch w-full">
         {/* Мобильная версия: изображение сверху */}
-        <div className="relative w-full h-[50vh]  xl:full xl:order-2 xl:w-1/2">
+        <div className="relative w-full h-[50vh]  xl:h-[60vh] xl:order-2 xl:w-1/2">
           {heroSlidesData.map((slide, index) => (
             <motion.div
               key={slide.id}

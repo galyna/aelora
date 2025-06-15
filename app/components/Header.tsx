@@ -1,4 +1,5 @@
 import Link from "next/link";
+import MobileMenu from "./MobileMenu";
 
 export default function Header() {
   return (
@@ -15,6 +16,8 @@ export default function Header() {
           <Link href="#hands" className="hover:text-graphite transition">Hand & Body</Link>
           <Link href="#subscribe" className="hover:text-graphite transition">Subscribe</Link>
         </nav>
+        {/* Мобильное меню */}
+        <MobileMenu />
       </div>
     </header>
   );

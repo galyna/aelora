@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     title: "Aelora ",
     description: "Handmade skincare rituals. Clean, vegan, minimal.",
     url: "https://aelora.vercel.app", // замени при деплое
-    siteName: "Aelora Botanicals",
+    siteName: "Aelora",
     images: [
       {
         url: "/og-image.jpg", // помести красивую preview-картинку
