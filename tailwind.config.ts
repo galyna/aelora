@@ -11,7 +11,6 @@ const config: Config = {
       colors: {
         graphite: '#2F2F2F',
         clay: '#8C8375',
-        sage: '#D5D3CA',
         background: '#FFFEF2',
         linen: '#F6F5E8',
       },
