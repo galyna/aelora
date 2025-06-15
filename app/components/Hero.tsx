@@ -22,16 +22,16 @@ interface HeroSlide {
 const heroSlidesData: HeroSlide[] = [
   {
     id: 1,
-    imageSrc: "/images/hero3.png",
+    imageSrc: "/images/hero3.webp",
     altText: "Lucent Facial Refiner bottle",
     subtitle: "The skin—in its best light",
     title: "Introducing Lucent Facial Refiner",
     description:
-      "A new gently exfoliating mask to even the texture and appearance of the skin.",
+      "A new gently exfoliatings mask to even the texture and appearance of the skin.",
   },
   {
     id: 3,
-    imageSrc: "/images/hero8.png",
+    imageSrc: "/images/hero8.webp",
     altText: "Yet Another Product",
     subtitle: "Daily protection",
     title: "Protective Facial Lotion SPF25",
