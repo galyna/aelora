@@ -24,7 +24,7 @@ export default function About({
 
   return (
     <section className="relative flex flex-col w-full py-8 md:py-10 lg:py-14  2xl:py-16">
-      <div className="flex flex-col xl:flex-row xl:items-stretch w-full xl:h-[50vh]">
+      <div className="flex flex-col xl:flex-row xl:items-stretch w-full xl:h-[60vh]">
         <div
           className={`relative w-full h-[50vh] xl:h-full  xl:w-3/5 ${imageOrder}`}
         >

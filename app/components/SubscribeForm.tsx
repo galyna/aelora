@@ -22,7 +22,7 @@ export default function SubscribeForm() {
 
   return (
     <section id="subscribe" className="relative flex flex-col w-full py-8 md:py-10 lg:py-14  2xl:py-16">
-      <div className="flex flex-col xl:flex-row xl:items-stretch w-full xl:h-[50vh]">
+      <div className="flex flex-col xl:flex-row xl:items-stretch w-full xl:h-[60vh]">
         {/* Картинка: сверху на мобилках, справа на xl+ */}
         <div className="relative w-full h-[50vh] xl:h-full xl:w-3/5 xl:order-2">
           <Image
