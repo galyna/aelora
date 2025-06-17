@@ -2,26 +2,46 @@
 
 import { useForm } from "react-hook-form";
 import Image from "next/image";
+import { supabase } from "../lib/supabaseClient";
+import { useState } from "react";
 
 type FormData = {
   email: string;
 };
 
 export default function SubscribeForm() {
+  const [status, setStatus] = useState<"idle" | "error" | "success">("idle");
+  const [message, setMessage] = useState("");
+
   const {
     register,
     handleSubmit,
-    formState: { errors, isSubmitSuccessful },
+    formState: { errors },
     reset,
   } = useForm<FormData>();
 
-  const onSubmit = (data: FormData) => {
-    console.log("Subscribed:", data);
-    reset();
+  const onSubmit = async (data: FormData) => {
+    setStatus("idle");
+
+    const { error } = await supabase
+      .from("newsletter_subscribers")
+      .insert([{ email: data.email }]);
+
+    if (error) {
+      setStatus("error");
+      setMessage("Error subscribing.");
+    } else {
+      setStatus("success");
+      setMessage("Thank you! You have subscribed.");
+      reset();
+    }
   };
 
   return (
-    <section id="subscribe" className="relative flex flex-col w-full py-8 md:py-10 lg:py-14  2xl:py-16">
+    <section
+      id="subscribe"
+      className="relative flex flex-col w-full py-8 md:py-10 lg:py-14  2xl:py-16"
+    >
       <div className="flex flex-col xl:flex-row xl:items-stretch w-full xl:h-[60vh]">
         {/* Картинка: сверху на мобилках, справа на xl+ */}
         <div className="relative w-full h-[50vh] xl:h-full xl:w-3/5 xl:order-2">
@@ -45,8 +65,8 @@ export default function SubscribeForm() {
               Receive occasional letters with calm thoughts and seasonal
               skincare tips.
             </p>
-            {isSubmitSuccessful ? (
-              <p className="text-green-600">Thank you for subscribing ✨</p>
+            {status === "success" ? (
+              <p className="text-green-600">{message}</p>
             ) : (
               <form onSubmit={handleSubmit(onSubmit)} className="space-y-12">
                 <input
@@ -63,6 +83,9 @@ export default function SubscribeForm() {
                 />
                 {errors.email && (
                   <p className="text-red-600 text-sm">{errors.email.message}</p>
+                )}
+                {status === "error" && (
+                  <p className="text-red-600 text-sm">{message}</p>
                 )}
                 <button
                   type="submit"
