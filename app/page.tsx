@@ -86,15 +86,7 @@ export default function Home() {
             "Skin is a living reflection of your rhythm—shaped by climate, habits, and nourishment. Our formulations respond intuitively to these shifts, helping you nurture lasting skin harmony.",
         }}
       />
-      <About
-        image={{ src: "/images/hero4.webp", alt: "Aelora about" }}
-        subtitle="Mindful Rituals"
-        title={<>Crafted for mindful rituals</>}
-        order={1}
-        description="Aelora  is a 
-      sensorial skincare line rooted in nature, designed to ground you in calm and clarity. Our hand-blended oils and creams are created with minimal intervention and
-       maximum intention. "
-      />
+      <About />
 
       <Gallery
         items={handItems}
