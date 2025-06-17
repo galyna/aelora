@@ -1,12 +1,28 @@
 import Hero from "./components/Hero";
 import Benefits from "./components/Benefits";
 import { GalleryItem } from "./models/GalleryItem";
-import { Suspense, lazy } from "react";
+import { Suspense } from "react";
+import dynamic from 'next/dynamic';
 
-const Gallery = lazy(() => import("./components/Gallery"));
-const About = lazy(() => import("./components/About"));
-const Reviews = lazy(() => import("./components/Reviews"));
-const SubscribeForm = lazy(() => import("./components/SubscribeForm"));
+const Gallery = dynamic(() => import("./components/Gallery"), {
+  loading: () => <div className="h-[50vh] animate-pulse bg-gray-100" />,
+  ssr: true
+});
+
+const About = dynamic(() => import("./components/About"), {
+  loading: () => <div className="h-[40vh] animate-pulse bg-gray-100" />,
+  ssr: true
+});
+
+const Reviews = dynamic(() => import("./components/Reviews"), {
+  loading: () => <div className="h-[30vh] animate-pulse bg-gray-100" />,
+  ssr: true
+});
+
+const SubscribeForm = dynamic(() => import("./components/SubscribeForm"), {
+  loading: () => <div className="h-[60vh] animate-pulse bg-gray-100" />,
+  ssr: true
+});
 
 const skinItems: GalleryItem[] = [
   {
