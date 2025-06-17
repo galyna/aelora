@@ -3,6 +3,7 @@ import Header from "./components/Header";
 import { Metadata } from "next";
 import Footer from "./components/Footer";
 import { DM_Serif_Display, DM_Sans } from "next/font/google";
+import { siteConfig } from "./lib/config";
 
 const dmSerif = DM_Serif_Display({ 
   subsets: ["latin"],
@@ -17,27 +18,32 @@ const dmSans = DM_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Aelora",
-  description: "Sensory skincare rooted in stillness. Crafted with care in Ukraine.",
-  icons: {
-    icon: '/aelora_icon.ico',
-  },
+  title: 'Aelora – Skincare Inspired by Nature',
+  description: 'Aelora is a modern skincare brand rooted in nature, offering mindful formulations for face and body with a focus on purity, balance, and ritual.',
   openGraph: {
-    title: "Aelora ",
-    description: "Handmade skincare rituals. Clean, vegan, minimal.",
-    url: "https://aelora.vercel.app", // замени при деплое
-    siteName: "Aelora",
+    title: 'Aelora – Skincare Inspired by Nature',
+    description: 'Discover Aelora: natural skincare rituals for radiant skin. Vegan, award-winning, and consciously formulated for daily care.',
+    url: siteConfig.url,
+    siteName: 'Aelora',
     images: [
       {
-        url: "/og-image.jpg", // помести красивую preview-картинку
+        url: `${siteConfig.url}/hero3.webp`,
         width: 1200,
         height: 630,
-        alt: "Aelora Landing",
+        alt: 'Aelora – Natural Skincare',
       },
     ],
-    type: "website",
+    locale: 'en_US',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Aelora – Skincare Inspired by Nature',
+    description: 'Discover mindful skincare rituals with Aelora. Vegan, clean, and nature-inspired.',
+    images: [`${siteConfig.url}/hero3.webp`],
   },
 };
+
 
 export default function RootLayout({
   children,
