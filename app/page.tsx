@@ -1,10 +1,12 @@
 import Hero from "./components/Hero";
 import Benefits from "./components/Benefits";
-import Gallery from "./components/Gallery";
-import SubscribeForm from "./components/SubscribeForm";
-import Reviews from "./components/Reviews";
 import { GalleryItem } from "./models/GalleryItem";
-import About from "./components/About";
+import { Suspense, lazy } from "react";
+
+const Gallery = lazy(() => import("./components/Gallery"));
+const About = lazy(() => import("./components/About"));
+const Reviews = lazy(() => import("./components/Reviews"));
+const SubscribeForm = lazy(() => import("./components/SubscribeForm"));
 
 const skinItems: GalleryItem[] = [
   {
@@ -77,28 +79,31 @@ export default function Home() {
     <main>
       <Hero />
       <Benefits />
-      <Gallery
-        items={skinItems}
-        id="skin"
-        generalDescription={{
-          title: "Skin Care",
-          description:
-            "Skin is a living reflection of your rhythm—shaped by climate, habits, and nourishment. Our formulations respond intuitively to these shifts, helping you nurture lasting skin harmony.",
-        }}
-      />
-      <About />
+      <Suspense fallback={<div>Loading...</div>}>
+        <Gallery
+          items={skinItems}
+          id="skin"
+          generalDescription={{
+            title: "Skin Care",
+            description:
+              "Skin is a living reflection of your rhythm—shaped by climate, habits, and nourishment. Our formulations respond intuitively to these shifts, helping you nurture lasting skin harmony.",
+          }}
+        />
+        <About />
 
-      <Gallery
-        items={handItems}
-        id="hands"
-        generalDescription={{
-          title: "Formulations for Hand & Body",
-          description:
-            "Each Aelora formulation for hand and body is crafted to transform the everyday—cleansing and care become quiet rituals of presence and renewal.",
-        }}
-      />
-      <SubscribeForm />
-      <Reviews />
+        <Gallery
+          items={handItems}
+          id="hands"
+          generalDescription={{
+            title: "Formulations for Hand & Body",
+            description:
+              "Each Aelora formulation for hand and body is crafted to transform the everyday—cleansing and care become quiet rituals of presence and renewal.",
+          }}
+        />
+        
+        <SubscribeForm />
+        <Reviews />
+      </Suspense>
     </main>
   );
 }
