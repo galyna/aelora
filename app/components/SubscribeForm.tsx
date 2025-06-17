@@ -11,7 +11,7 @@ type FormData = {
 };
 
 export default function SubscribeForm() {
-  const [status, setStatus] = useState<"idle" | "error" | "success">("idle");
+  const [status, setStatus] = useState<"idle" | "loading" | "error" | "success">("idle");
   const [message, setMessage] = useState("");
 
   const {
@@ -22,7 +22,8 @@ export default function SubscribeForm() {
   } = useForm<FormData>();
 
   const onSubmit = async (data: FormData) => {
-    setStatus("idle");
+    setStatus("loading");
+    setMessage("");
 
     const { error } = await supabase
       .from("newsletter_subscribers")
@@ -50,8 +51,10 @@ export default function SubscribeForm() {
             src={heroImage}
             alt="Subscribe visual"
             fill
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             className="object-cover"
             priority
+            quality={85}
           />
           <div className="absolute inset-0 bg-black/20 pointer-events-none" />
         </div>
@@ -70,29 +73,44 @@ export default function SubscribeForm() {
               <p className="text-green-600">{message}</p>
             ) : (
               <form onSubmit={handleSubmit(onSubmit)} className="space-y-12">
-                <input
-                  type="email"
-                  placeholder="your@email.com"
-                  {...register("email", {
-                    required: "Email is required",
-                    pattern: {
-                      value: /^\S+@\S+$/i,
-                      message: "Enter a valid email",
-                    },
-                  })}
-                  className="w-full px-4 py-3 border border-gray-300  focus:outline-none focus:ring-2 focus:ring-clay transition"
-                />
-                {errors.email && (
-                  <p className="text-red-600 text-sm">{errors.email.message}</p>
-                )}
+                <div className="relative">
+                  <input
+                    type="email"
+                    placeholder="your@email.com"
+                    disabled={status === "loading"}
+                    aria-invalid={errors.email ? "true" : "false"}
+                    aria-describedby={errors.email ? "email-error" : undefined}
+                    {...register("email", {
+                      required: "Email is required",
+                      pattern: {
+                        value: /^\S+@\S+$/i,
+                        message: "Enter a valid email",
+                      },
+                    })}
+                    className="w-full px-4 py-3 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-clay transition disabled:opacity-50 disabled:cursor-not-allowed"
+                  />
+                  {errors.email && (
+                    <p id="email-error" className="text-red-600 text-sm mt-1">{errors.email.message}</p>
+                  )}
+                </div>
                 {status === "error" && (
                   <p className="text-red-600 text-sm">{message}</p>
                 )}
                 <button
                   type="submit"
-                  className="w-full md:w-auto xl:w-full px-6 py-4 bg-graphite text-white uppercase tracking-wide hover:bg-black transition "
+                  disabled={status === "loading"}
+                  className="w-full md:w-auto xl:w-full px-6 py-4 bg-graphite text-white uppercase tracking-wide hover:bg-black transition disabled:opacity-50 disabled:cursor-not-allowed relative"
                 >
-                  Subscribe
+                  {status === "loading" ? (
+                    <>
+                      <span className="opacity-0">Subscribe</span>
+                      <div className="absolute inset-0 flex items-center justify-center">
+                        <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                      </div>
+                    </>
+                  ) : (
+                    "Subscribe"
+                  )}
                 </button>
               </form>
             )}
