@@ -76,34 +76,46 @@ const handItems: GalleryItem[] = [
 
 export default function Home() {
   return (
-    <main>
-      <Hero />
-      <Benefits />
-      <Suspense fallback={<div>Loading...</div>}>
-        <Gallery
-          items={skinItems}
-          id="skin"
-          generalDescription={{
-            title: "Skin Care",
-            description:
-              "Skin is a living reflection of your rhythm—shaped by climate, habits, and nourishment. Our formulations respond intuitively to these shifts, helping you nurture lasting skin harmony.",
-          }}
-        />
-        <About />
+    <>
+      <a href="#main-content" className="sr-only focus:not-sr-only">
+        Skip to main content
+      </a>
+      <main id="main-content" role="main">
+        <Hero />
+        <Benefits />
+        <Suspense fallback={<div role="status" aria-label="Loading content">Loading...</div>}>
+          <section aria-labelledby="skin-care-title">
+            <h2 id="skin-care-title" className="sr-only">Skin Care Products</h2>
+            <Gallery
+              items={skinItems}
+              id="skin"
+              generalDescription={{
+                title: "Skin Care",
+                description:
+                  "Skin is a living reflection of your rhythm—shaped by climate, habits, and nourishment. Our formulations respond intuitively to these shifts, helping you nurture lasting skin harmony.",
+              }}
+            />
+          </section>
+          
+          <About />
 
-        <Gallery
-          items={handItems}
-          id="hands"
-          generalDescription={{
-            title: "Formulations for Hand & Body",
-            description:
-              "Each Aelora formulation for hand and body is crafted to transform the everyday—cleansing and care become quiet rituals of presence and renewal.",
-          }}
-        />
-        
-        <SubscribeForm />
-        <Reviews />
-      </Suspense>
-    </main>
+          <section aria-labelledby="body-care-title">
+            <h2 id="body-care-title" className="sr-only">Body Care Products</h2>
+            <Gallery
+              items={handItems}
+              id="hands"
+              generalDescription={{
+                title: "Formulations for Hand & Body",
+                description:
+                  "Each Aelora formulation for hand and body is crafted to transform the everyday—cleansing and care become quiet rituals of presence and renewal.",
+              }}
+            />
+          </section>
+          
+          <SubscribeForm />
+          <Reviews />
+        </Suspense>
+      </main>
+    </>
   );
 }
