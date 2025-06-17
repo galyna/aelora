@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+import Image, { StaticImageData } from "next/image";
 import { useState, useEffect, useCallback } from "react";
 import {
   ChevronLeftIcon,
@@ -9,10 +9,12 @@ import {
   PauseIcon,
 } from "@heroicons/react/24/solid";
 import { motion } from "framer-motion";
+import hero3 from "@/public/images/hero3.webp";
+import hero8 from "@/public/images/hero8.webp";
 
 interface HeroSlide {
   id: number;
-  imageSrc: string;
+  imageSrc: StaticImageData;
   altText: string;
   subtitle: string;
   title: string;
@@ -22,7 +24,7 @@ interface HeroSlide {
 const heroSlidesData: HeroSlide[] = [
   {
     id: 1,
-    imageSrc: "/images/hero3.webp",
+    imageSrc: hero3,
     altText: "Lucent Facial Refiner bottle",
     subtitle: "The skin—in its best light",
     title: "Introducing Lucent Facial Refiner",
@@ -31,7 +33,7 @@ const heroSlidesData: HeroSlide[] = [
   },
   {
     id: 3,
-    imageSrc: "/images/hero8.webp",
+    imageSrc: hero8,
     altText: "Yet Another Product",
     subtitle: "Daily protection",
     title: "Protective Facial Lotion SPF25",
