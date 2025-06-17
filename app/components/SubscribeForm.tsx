@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import Image from "next/image";
 import { supabase } from "../lib/supabaseClient";
 import { useState } from "react";
+import heroImage from "@/public/images/hero6.webp";
 
 type FormData = {
   email: string;
@@ -46,7 +47,7 @@ export default function SubscribeForm() {
         {/* Картинка: сверху на мобилках, справа на xl+ */}
         <div className="relative w-full h-[50vh] xl:h-full xl:w-3/5 xl:order-2">
           <Image
-            src="/images/hero6.jpg"
+            src={heroImage}
             alt="Subscribe visual"
             fill
             className="object-cover"
