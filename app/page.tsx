@@ -1,32 +1,112 @@
-import Image from "next/image";
-import heroImage from "@/public/hero-image-1.png";
+import Hero from "./components/Hero";
+import Benefits from "./components/Benefits";
+import Gallery from "./components/Gallery";
+import SubscribeForm from "./components/SubscribeForm";
+import Reviews from "./components/Reviews";
+import { GalleryItem } from "./models/GalleryItem";
+import About from "./components/About";
+
+const skinItems: GalleryItem[] = [
+  {
+    src: "/images/product8.webp",
+    alt: "Camellia Nut Facial  Cream",
+    title: "Camellia Nut Facial  Cream",
+    description: "For normal, dry  skin",
+  },
+  {
+    src: "/images/product2.webp",
+    alt: "Parsley  Facial Cleanser",
+    title: "Parsley Facial Cleanser",
+    description: "For normal troubled skin",
+  },
+  {
+    src: "/images/product4.webp",
+    alt: "Camellia Nut Facial Cream",
+    title: "Camellia Nut Facial Cream",
+    description: "For normal skin",
+  },
+  {
+    src: "/images/product1.webp",
+    alt: "Zinc Facial Hydrating Lotion",
+    title: "Zinc Facial Hydrating Lotion ",
+    description: "For a wide range of skin types",
+  },
+  {
+    src: "/images/product6.webp",
+    alt: "Exalted Eye Serum ",
+    title: "Exalted Eye Serum ",
+    description: "For sensitive, mature, dehydrated",
+  },
+];
+
+const handItems: GalleryItem[] = [
+  {
+    src: "/images/product5.webp",
+    alt: "Redemption Body Scrub",
+    title: "Redemption Body Scrub",
+    description: "For normal, dry and sensitive skin",
+  },
+  {
+    src: "/images/product6.webp",
+    alt: "Citrus Melange Body Cleanser",
+    title: "Citrus Melange Body Cleanser",
+    description: "Citrus, fresh",
+  },
+  {
+    src: "/images/product3.webp",
+    alt: "Geranium Leaf Body Scrub",
+    title: "Geranium Leaf Body Scrub",
+    description: "Coarse-grain gel to cleanse ",
+  },
+  {
+    src: "/images/product7.webp",
+    alt: "Bathroom Essentials Bundle",
+    title: "Bathroom Essentials Bundle",
+    description: "A trio of much-loved formulations ",
+  },
+  {
+    src: "/images/product4.webp",
+    alt: "Rejuvenate Intensive Body Balm",
+    title: "Rejuvenate Intensive Body Balm",
+    description: "Citrus, vanilla, woody",
+  },
+];
 
 export default function Home() {
   return (
-    <main className="bg-gray-100">
-      <section className="container mx-auto px-4 py-8">
-        <div className="flex  md:flex-row flex-col-reverse items-center gap-10">
-          <div className="flex-1 flex flex-col gap-2 items-start">
-            <h1 className="text-4xl font-bold text-black mb-4">
-              Discover what&apos;s possible with 3D printing
-            </h1>
-            <p className="text-gray-600 text-lg">
-              Join our community of creators and explore a vast library of
-              user-submitted models.
-            </p>
-            <button className="bg-blue-600 text-white px-4 py-2 rounded-md">
-              Get Started
-            </button>
-          </div>
-          <div className="flex-1">
-            <Image
-              className="w-full h-full object-cover rounded-lg inset-0"
-              src={heroImage}
-              alt="3D printer hero image"
-            />
-          </div>
-        </div>
-      </section>
+    <main>
+      <Hero />
+      <Benefits />
+      <Gallery
+        items={skinItems}
+        id="skin"
+        generalDescription={{
+          title: "Skin Care",
+          description:
+            "Skin is a living reflection of your rhythm—shaped by climate, habits, and nourishment. Our formulations respond intuitively to these shifts, helping you nurture lasting skin harmony.",
+        }}
+      />
+      <About
+        image={{ src: "/images/hero4.webp", alt: "Aelora about" }}
+        subtitle="Mindful Rituals"
+        title={<>Crafted for mindful rituals</>}
+        order={1}
+        description="Aelora  is a 
+      sensorial skincare line rooted in nature, designed to ground you in calm and clarity. Our hand-blended oils and creams are created with minimal intervention and
+       maximum intention. "
+      />
+
+      <Gallery
+        items={handItems}
+        id="hands"
+        generalDescription={{
+          title: "Formulations for Hand & Body",
+          description:
+            "Each Aelora formulation for hand and body is crafted to transform the everyday—cleansing and care become quiet rituals of presence and renewal.",
+        }}
+      />
+      <SubscribeForm />
+      <Reviews />
     </main>
   );
 }

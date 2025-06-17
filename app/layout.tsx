@@ -1,19 +1,43 @@
 import "./globals.css";
 import Header from "./components/Header";
-import { Montserrat_Alternates, Albert_Sans } from "next/font/google";
+import { Metadata } from "next";
+import Footer from "./components/Footer";
+import { DM_Serif_Display, DM_Sans } from "next/font/google";
 
-const montserrat = Montserrat_Alternates({
+const dmSerif = DM_Serif_Display({ 
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-  display: "swap",
-  variable: "--font-montserrat",
+  weight: ['400'],
+  variable: '--font-dm-serif'
 });
 
-const albertSans = Albert_Sans({
+const dmSans = DM_Sans({
   subsets: ["latin"],
-  display: "swap",
-  variable: "--font-albert",
+  weight: ['400', '500', '700'],
+  variable: '--font-dm-sans'
 });
+
+export const metadata: Metadata = {
+  title: "Aelora",
+  description: "Sensory skincare rooted in stillness. Crafted with care in Ukraine.",
+  icons: {
+    icon: '/aelora_icon.ico',
+  },
+  openGraph: {
+    title: "Aelora ",
+    description: "Handmade skincare rituals. Clean, vegan, minimal.",
+    url: "https://aelora.vercel.app", // замени при деплое
+    siteName: "Aelora",
+    images: [
+      {
+        url: "/og-image.jpg", // помести красивую preview-картинку
+        width: 1200,
+        height: 630,
+        alt: "Aelora Landing",
+      },
+    ],
+    type: "website",
+  },
+};
 
 export default function RootLayout({
   children,
@@ -22,9 +46,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`bg-gray-100 ${montserrat.variable} ${albertSans.variable}`}>
+      <body className={`${dmSerif.variable} ${dmSans.variable} bg-background`}>
         <Header />
         {children}
+        <Footer />
       </body>
     </html>
   );
