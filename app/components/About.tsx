@@ -17,8 +17,10 @@ export default function About() {
             src={hero4}
             alt="Aelora about"
             fill
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             className="object-cover"
             priority
+            quality={85}
           />
           <div className="absolute inset-0 bg-black/20 pointer-events-none" />
         </div>
