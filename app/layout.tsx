@@ -14,7 +14,8 @@ const dmSerif = DM_Serif_Display({
 const dmSans = DM_Sans({
   subsets: ["latin"],
   weight: ['400', '500', '700'],
-  variable: '--font-dm-sans'
+  variable: '--font-dm-sans',
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -42,6 +43,19 @@ export const metadata: Metadata = {
     description: 'Discover mindful skincare rituals with Aelora. Vegan, clean, and nature-inspired.',
     images: [`${siteConfig.url}/hero3.webp`],
   },
+  metadataBase: new URL(siteConfig.url),
+  viewport: {
+    width: 'device-width',
+    initialScale: 1,
+    maximumScale: 1,
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
+  icons: {
+    icon: '/favicon.ico'
+  }
 };
 
 
@@ -51,8 +65,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={`${dmSerif.variable} ${dmSans.variable} bg-background`}>
+    <html lang="en" className={`${dmSerif.variable} ${dmSans.variable} bg-background`}>
+      <body>
         <Header />
         {children}
         <Footer />
