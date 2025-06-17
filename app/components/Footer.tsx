@@ -1,4 +1,5 @@
 import { FaInstagram, FaFacebookF, FaEnvelope } from "react-icons/fa";
+import { siteConfig } from "../lib/config";
 
 export default function Footer() {
   return (
@@ -6,24 +7,24 @@ export default function Footer() {
   
       <div className="space-y-6">
         {/* Логотип или название */}
-        <h3 className="text-xl font-serif">Aelora</h3>
+        <h3 className="text-xl font-serif">{siteConfig.name}</h3>
 
         {/* Социальные иконки */}
         <div className="flex justify-center space-x-6  text-lg">
-          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="hover:text-graphite transition">
+          <a href={siteConfig.links.instagram} target="_blank" rel="noopener noreferrer" className="hover:text-graphite transition">
             <FaInstagram />
           </a>
-          <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="hover:text-graphite transition">
+          <a href={siteConfig.links.facebook} target="_blank" rel="noopener noreferrer" className="hover:text-graphite transition">
             <FaFacebookF />
           </a>
-          <a href="mailto:hello@aelora.com" className="hover:text-graphite transition">
+          <a href={`mailto:${siteConfig.links.email}`} className="hover:text-graphite transition">
             <FaEnvelope />
           </a>
         </div>
 
         {/* Подпись */}
         <p className="text-sm">
-          © {new Date().getFullYear()} Aelora. Made with care in Ukraine.
+          © {new Date().getFullYear()} {siteConfig.name}. Made with care in Ukraine.
         </p>
       </div>
     </footer>
