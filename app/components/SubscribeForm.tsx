@@ -51,12 +51,11 @@ export default function SubscribeForm() {
             src={heroImage}
             alt="Subscribe visual"
             fill
-            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 70vw, 7s0vw"
             className="object-cover"
             priority
-            quality={85}
           />
-          <div className="absolute inset-0 bg-black/20 pointer-events-none" />
+          <div className="absolute inset-0 pointer-events-none" />
         </div>
         {/* Форма */}
         <div className="relative flex-1 flex flex-col p-8 text-graphite xl:w-2/5 xl:h-full xl:items-center xl:text-left xl:pl-24 xl:pr-24 xl:order-1 justify-center">
@@ -99,7 +98,7 @@ export default function SubscribeForm() {
                 <button
                   type="submit"
                   disabled={status === "loading"}
-                  className="w-full md:w-auto xl:w-full px-6 py-4 bg-graphite text-white uppercase tracking-wide hover:bg-black transition disabled:opacity-50 disabled:cursor-not-allowed relative"
+                  className="w-full md:w-[280px] xl:w-full px-6 py-4 bg-graphite text-white uppercase tracking-wide hover:bg-black transition disabled:opacity-50 disabled:cursor-not-allowed relative"
                 >
                   {status === "loading" ? (
                     <>
