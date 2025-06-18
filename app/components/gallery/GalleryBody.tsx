@@ -1,40 +1,7 @@
 'use client';
 
-import { GalleryItem } from "../../models/GalleryItem";
 import Gallery from "./Gallery";
-
-const handItems: GalleryItem[] = [
-  {
-    src: "/images/product5.webp",
-    alt: "Redemption Body Scrub",
-    title: "Redemption Body Scrub",
-    description: "For normal, dry and sensitive skin",
-  },
-  {
-    src: "/images/product6.webp",
-    alt: "Citrus Melange Body Cleanser",
-    title: "Citrus Melange Body Cleanser",
-    description: "Citrus, fresh",
-  },
-  {
-    src: "/images/product3.webp",
-    alt: "Geranium Leaf Body Scrub",
-    title: "Geranium Leaf Body Scrub",
-    description: "Coarse-grain gel to cleanse ",
-  },
-  {
-    src: "/images/product7.webp",
-    alt: "Bathroom Essentials Bundle",
-    title: "Bathroom Essentials Bundle",
-    description: "A trio of much-loved formulations ",
-  },
-  {
-    src: "/images/product4.webp",
-    alt: "Rejuvenate Intensive Body Balm",
-    title: "Rejuvenate Intensive Body Balm",
-    description: "Citrus, vanilla, woody",
-  },
-];
+import { bodyItems } from "@/app/data/bodyItems";
 
 export default function GalleryBody() {
   return (
@@ -43,7 +10,7 @@ export default function GalleryBody() {
         Body Care Products
       </h2>
       <Gallery
-        items={handItems}
+        items={bodyItems}
         id="hands"
         generalDescription={{
           title: "Formulations for Hand & Body",

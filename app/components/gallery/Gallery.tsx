@@ -87,7 +87,7 @@ function GalleryItem({ item, index, visibleSlides, className = "" }: { item: Gal
   );
 }
 
-export default function Gallery({ items, generalDescription, id }: { 
+export default function Gallery({ items = [], generalDescription, id }: { 
   items: GalleryItemType[], 
   generalDescription?: { title: string, description: string },
   id?: string 
@@ -96,6 +96,8 @@ export default function Gallery({ items, generalDescription, id }: {
   const visibleSlides = useVisibleSlides();
   const slideItemWidthPercentage = 100 / visibleSlides;
   const is2xl = useIs2xl();
+
+  if (!items || items.length === 0) return null;
 
   const handleNext = () => {
     setCurrentIndex((prevIndex) => {
