@@ -9,13 +9,8 @@ interface SiteConfig {
   };
 }
 
-const getSiteUrl = () => {
-  if (typeof window !== 'undefined') return window.location.origin;
-  return process.env.NEXT_PUBLIC_SITE_URL ?? 'http://localhost:3000';
-};
-
 export const siteConfig: SiteConfig = {
-  url: getSiteUrl(),
+  url: process.env.NEXT_PUBLIC_SITE_URL ?? 'http://localhost:3000',
   name: 'Aelora',
   description: 'Sensorial skincare line rooted in nature',
   links: {
