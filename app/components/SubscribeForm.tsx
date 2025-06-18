@@ -118,7 +118,7 @@ export default function SubscribeForm() {
                 <button
                   type="submit"
                   disabled={status === "loading"}
-                  className="w-full md:w-[280px] px-6 py-4 bg-graphite bg-opacity-80 text-white
+                  className="w-full md:w-[280px] px-6 py-4 bg-graphite bg-opacity-87 text-white
                  uppercase tracking-wide hover:bg-black transition disabled:opacity-50 disabled:cursor-not-allowed relative"
                 >
                   {status === "loading" ? (
