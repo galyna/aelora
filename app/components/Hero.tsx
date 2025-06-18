@@ -160,7 +160,7 @@ export default function Hero() {
                 el?.scrollIntoView({ behavior: "smooth" });
               }}
               className="w-[280px]  px-6 py-4 mt-6  text-xs md:text-sm tracking-widest font-semibold
-               bg-linen text-graphite uppercase  hover:bg-background transition  border border-gray-200 relative"
+               bg-linen text-graphite uppercase  hover:bg-background hover:bg-opacity-25 transition  border border-gray-200 relative"
             >
               Join the ritual
             </button>
