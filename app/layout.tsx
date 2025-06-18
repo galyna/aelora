@@ -28,7 +28,7 @@ export const metadata: Metadata = {
     siteName: 'Aelora',
     images: [
       {
-        url: `${siteConfig.url}/hero3.webp`,
+        url: `${siteConfig.url}/og-preview.jpg`,
         width: 1200,
         height: 630,
         alt: 'Aelora – Natural Skincare',
@@ -41,7 +41,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Aelora – Skincare Inspired by Nature',
     description: 'Discover mindful skincare rituals with Aelora. Vegan, clean, and nature-inspired.',
-    images: [`${siteConfig.url}/hero3.webp`],
+    images: [`${siteConfig.url}/og-preview.jpg`],
   },
   metadataBase: new URL(siteConfig.url),
   viewport: {
