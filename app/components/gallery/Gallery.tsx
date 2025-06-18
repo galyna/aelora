@@ -4,7 +4,7 @@ import Image from "next/image";
 import { motion, useInView } from "framer-motion";
 import { useState, useEffect, useCallback, useRef } from "react";
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/24/outline';
-import { GalleryItem as GalleryItemType } from "../models/GalleryItem";
+import { GalleryItem as GalleryItemType } from "../../models/GalleryItem";
 
 
 // Хук для определения ширины окна и количества видимых слайдов
@@ -72,7 +72,7 @@ function GalleryItem({ item, index, visibleSlides, className = "" }: { item: Gal
               alt={item.alt}
               width={300}
               height={300}
-              sizes="(max-width: 967px) 99vw, (max-width: 1535px) 25vw, 40vw"
+              sizes="(max-width: 967px) 99vw, (max-width: 1535px) 25vw, 25vw"
               className="object-contain max-h-full w-auto"
               priority={index < visibleSlides}
             />
