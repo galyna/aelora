@@ -77,27 +77,30 @@ export default function Hero() {
       <div className="flex flex-col xl:h-[60vh] xl:flex-row xl:items-stretch w-full">
         {/* Мобильная версия: изображение сверху */}
         <div className="relative w-full h-[50vh]  xl:h-[60vh] xl:order-2 xl:w-1/2">
-          {heroSlidesData.map((slide, index) => (
-            <motion.div
-              key={slide.id}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: index === currentIndex ? 1 : 0 }}
-              transition={{ duration: 0.8, ease: "easeInOut" }}
-              className="absolute inset-0"
-            >
-              <Image
-                src={slide.imageSrc}
-                alt={slide.altText}
-                layout="fill"
-                objectFit="cover"
-                priority={index === 0}
-                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                className="object-cover"
-                quality={85}
-              />
-            </motion.div>
-          ))}
-          <div className="absolute inset-0 bg-black/30 lg:bg-black/10"></div>
+          {heroSlidesData.map((slide, index) => {
+            const isActive = index === currentIndex;
+            const isFirst = index === 0;
+
+            return (
+              <motion.div
+                key={slide.id}
+                initial={isFirst ? false : { opacity: 0 }}
+                animate={{ opacity: isActive ? 1 : 0 }}
+                transition={{ duration: isFirst ? 0 : 0.8, ease: "easeInOut" }}
+                className="absolute inset-0"
+              >
+                <Image
+                  src={slide.imageSrc}
+                  alt={slide.altText}
+                  priority={isFirst}
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 50vw"
+                  className="object-cover"
+                  fill
+                />
+              </motion.div>
+            );
+          })}
+          <div className="absolute inset-0 pointer-events-none"></div>
         </div>
 
         {/* Мобильная версия: контент снизу, десктоп: логотип слева */}
@@ -143,7 +146,7 @@ export default function Hero() {
               )}
             </button>
           </div>
-          <div className="h-[30vh] xl:h-full xl:max-w-lg mx-auto xl:mx-0 p-8 xl:p-0 xl:pr-16  flex  flex-col justify-center  gap-2 xl:gap-4 2xl:mx-auto 2xl:p-8">
+          <div className="h-auto  xl:h-full xl:max-w-lg mx-auto xl:mx-0 p-8 xl:p-0 xl:pr-16  flex  flex-col justify-around   2xl:mx-auto 2xl:p-8">
             <p className="text-sm mb-2">{currentSlide.subtitle}</p>
             <h2 className="text-2xl md:text-3xl xl:text-4xl font-serif mb-3 md:mb-4">
               {currentSlide.title}
@@ -151,7 +154,16 @@ export default function Hero() {
             <p className="text-md md:text-xl leading-relaxed text-gray-700">
               {currentSlide.description}
             </p>
-
+            <button
+              onClick={() => {
+                const el = document.getElementById("subscribe");
+                el?.scrollIntoView({ behavior: "smooth" });
+              }}
+              className="w-[280px]  px-6 py-4 mt-6  text-xs md:text-sm tracking-widest font-semibold
+               bg-linen text-graphite uppercase  hover:bg-background transition  border border-gray-200 relative"
+            >
+              Join the ritual
+            </button>
             {/* Контролы для десктопа */}
             <div className="hidden items-center justify-center xl:justify-start xl:gap-4 xl:p-0 xl:pt-8 p-8 xl:flex">
               <div className="flex items-center space-x-2">

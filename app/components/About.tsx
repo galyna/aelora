@@ -17,12 +17,11 @@ export default function About() {
             src={hero4}
             alt="Aelora about"
             fill
-            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 70vw, 70vw"
             className="object-cover"
             priority
-            quality={85}
           />
-          <div className="absolute inset-0 bg-black/20 pointer-events-none" />
+          <div className="absolute inset-0 pointer-events-none" />
         </div>
         <div
           className={`relative flex-1 flex flex-col  px-8 pt-8 text-graphite xl:w-2/5 xl:h-full  xl:items-center xl:text-left xl:pl-24 xl:pr-24  justify-center`}
