@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import Image from "next/image";
 import { supabase } from "../lib/supabaseClient";
 import { useState } from "react";
+import { motion } from "framer-motion";
 import heroImage from "@/public/images/hero6.webp";
 
 type FormData = {
@@ -11,8 +12,9 @@ type FormData = {
 };
 
 export default function SubscribeForm() {
-  const [status, setStatus] = useState<"idle" | "loading" | "error" | "success">("idle");
-  const [message, setMessage] = useState("");
+  const [status, setStatus] = useState<
+    "idle" | "loading" | "error" | "success"
+  >("idle");
 
   const {
     register,
@@ -23,7 +25,6 @@ export default function SubscribeForm() {
 
   const onSubmit = async (data: FormData) => {
     setStatus("loading");
-    setMessage("");
 
     const { error } = await supabase
       .from("newsletter_subscribers")
@@ -31,10 +32,9 @@ export default function SubscribeForm() {
 
     if (error) {
       setStatus("error");
-      setMessage("Error subscribing.");
     } else {
       setStatus("success");
-      setMessage("Thank you! You have subscribed.");
+
       reset();
     }
   };
@@ -68,9 +68,24 @@ export default function SubscribeForm() {
               Receive occasional letters with calm thoughts and seasonal
               skincare tips.
             </p>
-            {status === "success" ? (
-              <p className="text-green-600">{message}</p>
-            ) : (
+            {status === "success" && (
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.6 }}
+                className=" bg-linen p-4  mt-4 text-center"
+              >
+                <p className="text-base font-medium">
+                  Thank you for joining our ritual. ✨
+                </p>
+                <p className="text-sm mt-1">
+                  We’ll send you seasonal skincare letters, softly.
+                </p>
+              </motion.div>
+            )}
+            {(status === "idle" ||
+              status === "loading" ||
+              status === "error") && (
               <form onSubmit={handleSubmit(onSubmit)} className="space-y-12">
                 <div className="relative">
                   <input
@@ -89,16 +104,22 @@ export default function SubscribeForm() {
                     className="w-full px-4 py-3 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-clay transition disabled:opacity-50 disabled:cursor-not-allowed"
                   />
                   {errors.email && (
-                    <p id="email-error" className="text-red-600 text-sm mt-1">{errors.email.message}</p>
+                    <p className="absolute top-full left-0 text-red-600 text-sm mt-1">
+                      {errors.email.message}
+                    </p>
+                  )}
+                  {status === "error" && (
+                    <p className="absolute top-full left-0 text-red-600 text-sm mt-1">
+                      Error subscribing. Please try again.
+                    </p>
                   )}
                 </div>
-                {status === "error" && (
-                  <p className="text-red-600 text-sm">{message}</p>
-                )}
+
                 <button
                   type="submit"
                   disabled={status === "loading"}
-                  className="w-full md:w-[280px] xl:w-full px-6 py-4 bg-graphite text-white uppercase tracking-wide hover:bg-black transition disabled:opacity-50 disabled:cursor-not-allowed relative"
+                  className="w-full md:w-[280px] px-6 py-4 bg-graphite bg-opacity-90 text-white
+                 uppercase tracking-wide hover:bg-black transition disabled:opacity-50 disabled:cursor-not-allowed relative"
                 >
                   {status === "loading" ? (
                     <>
