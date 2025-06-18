@@ -77,26 +77,30 @@ export default function Hero() {
       <div className="flex flex-col xl:h-[60vh] xl:flex-row xl:items-stretch w-full">
         {/* Мобильная версия: изображение сверху */}
         <div className="relative w-full h-[50vh]  xl:h-[60vh] xl:order-2 xl:w-1/2">
-          {heroSlidesData.map((slide, index) => (
-            <motion.div
-              key={slide.id}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: index === currentIndex ? 1 : 0 }}
-              transition={{ duration: 0.8, ease: "easeInOut" }}
-              className="absolute inset-0"
-            >
-              <Image
-                src={slide.imageSrc}
-                alt={slide.altText}
-                layout="fill"
-                objectFit="cover"
-                priority={index === 0}
-                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                className="object-cover"
-                quality={85}
-              />
-            </motion.div>
-          ))}
+          {heroSlidesData.map((slide, index) => {
+            const isActive = index === currentIndex;
+            const isFirst = index === 0;
+
+            return (
+              <motion.div
+                key={slide.id}
+                initial={isFirst ? false : { opacity: 0 }}
+                animate={{ opacity: isActive ? 1 : 0 }}
+                transition={{ duration: isFirst ? 0 : 0.8, ease: "easeInOut" }}
+                className="absolute inset-0"
+              >
+                <Image
+                  src={slide.imageSrc}
+                  alt={slide.altText}
+                  priority={isFirst}
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  className="object-cover"
+                  quality={85}
+                  fill
+                />
+              </motion.div>
+            );
+          })}
           <div className="absolute inset-0 bg-black/30 lg:bg-black/10"></div>
         </div>
 
