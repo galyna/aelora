@@ -33,7 +33,7 @@ function ReviewCard({ name, role, text }: Review) {
   const isInView = useInView(ref, { once: true, margin: "-10% 0px" });
 
   return (
-    <div ref={ref} className=" bg-linen p-8  flex flex-col items-start justify-center text-left text-graphite">
+    <div ref={ref} className=" bg-linen p-8  flex flex-col items-start justify-start text-left text-graphite">
       <motion.div
         initial={{ y: -60, opacity: 0 }}
         animate={isInView ? { y: 0, opacity: 1 } : { y: -60, opacity: 0 }}
