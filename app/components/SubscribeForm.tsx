@@ -101,7 +101,8 @@ export default function SubscribeForm() {
                         message: "Enter a valid email",
                       },
                     })}
-                    className="w-full px-4 py-3 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-clay transition disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="w-full px-4 py-3 border border-gray-300 
+                    focus:outline-none focus:ring-2 focus:ring-clay transition disabled:opacity-50 disabled:cursor-not-allowed"
                   />
                   {errors.email && (
                     <p className="absolute top-full left-0 text-red-600 text-sm mt-1">
