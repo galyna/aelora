@@ -58,7 +58,7 @@ function GalleryItem({ item, index, visibleSlides, className = "" }: { item: Gal
       className={`flex-shrink-0 group ${className}`}
       style={{ width: `${100 / visibleSlides}%` }}
     >
-      <div ref={ref} className="relative w-full aspect-auto xl:aspect-square flex flex-col overflow-hidden group">
+      <div role="region" aria-label="Product carousel" ref={ref} className="relative w-full aspect-auto xl:aspect-square flex flex-col overflow-hidden group">
         <div className="h-2/3 xl:h-4/5 bg-linen transition-colors  flex items-center justify-center">
           <motion.div
             key={item.src}
@@ -80,7 +80,7 @@ function GalleryItem({ item, index, visibleSlides, className = "" }: { item: Gal
         </div>
         <div className="h-1/3 xl:h-1/5 bg-transparent transition-colors duration-500 group-hover:bg-linen flex flex-col items-start justify-center text-left px-8 py-8">
           <h3 className="text-base lg:text-xl font-serif text-graphite mb-1 whitespace-normal break-words">{item.title}</h3>
-          <p className="text-base lg:text-lg text-gray-600 whitespace-normal break-words">{item.description}</p>
+          <p className="text-base lg:text-lg text-black whitespace-normal break-words">{item.description}</p>
         </div>
       </div>
     </div>

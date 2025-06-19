@@ -75,7 +75,7 @@ export default function SubscribeForm() {
                 transition={{ duration: 0.6 }}
                 className=" bg-linen p-4  mt-4 text-center"
               >
-                <p className="text-base font-medium">
+                <p className="text-base font-medium " aria-live="polite">
                   Thank you for joining our ritual. ✨
                 </p>
                 <p className="text-sm mt-1">
@@ -118,8 +118,8 @@ export default function SubscribeForm() {
                 <button
                   type="submit"
                   disabled={status === "loading"}
-                  className="w-full md:w-[280px] px-6 py-4 bg-graphite bg-opacity-87 text-white
-                 uppercase tracking-wide hover:bg-black transition disabled:opacity-50 disabled:cursor-not-allowed relative"
+                  className="w-full md:w-[260px] px-6 py-4 mt-6 shadow-sm hover:shadow-md hover:opacity-100 opacity-95 transition-all duration-200
+               border-2 border-olive text-olive uppercase tracking-widest font-bold text-sm  hover:bg-oliveLight "
                 >
                   {status === "loading" ? (
                     <>

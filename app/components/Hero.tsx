@@ -96,6 +96,7 @@ export default function Hero() {
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 50vw"
                   className="object-cover"
                   fill
+                  placeholder="blur"
                 />
               </motion.div>
             );
@@ -159,8 +160,8 @@ export default function Hero() {
                 const el = document.getElementById("subscribe");
                 el?.scrollIntoView({ behavior: "smooth" });
               }}
-              className="w-[280px]  px-6 py-4 mt-6  text-xs md:text-sm tracking-widest font-semibold
-               bg-linen text-graphite uppercase  hover:bg-background hover:bg-opacity-25 transition  border border-gray-200 relative"
+              className="w-[260px] px-6 py-4 mt-6 shadow-sm hover:shadow-md hover:opacity-100 opacity-95 transition-all duration-200
+               border-2 border-olive text-olive uppercase tracking-widest font-bold text-sm  hover:bg-oliveLight"
             >
               Join the ritual
             </button>
