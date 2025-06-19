@@ -3,8 +3,8 @@ import MobileMenu from "./MobileMenu";
 
 export default function Header() {
   return (
-    <header className="w-full z-50">
-      <div className="max-w-full px-8 py-8 flex justify-between place-items-baseline  xl:mx-20">
+    <header className="sticky xl:relative top-0 z-50 bg-background transition-colors duration-300 w-full">
+      <div className="max-w-full px-8 py-4 lg:py-8 flex justify-between place-items-baseline  xl:mx-20">
         {/* Логотип или название */}
         <Link href="/" className="text-3xl  md:text-4xl font-serif text-graphite tracking-wide 2xl:hidden ">
           Aelora
