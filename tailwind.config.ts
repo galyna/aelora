@@ -13,6 +13,8 @@ const config: Config = {
         clay: '#8C8375',
         background: '#FFFEF2',
         linen: '#F6F5E8',
+        olive: '#7a8648',
+        oliveLight: '#f0f0e4',
       },
       fontFamily: {
         sans: ['var(--font-dm-sans)'],
