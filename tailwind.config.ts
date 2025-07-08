@@ -16,6 +16,8 @@ const config: Config = {
         olive: '#7a8648',
         oliveDark: '#55602c',
         oliveLight: '#f0f0e4',
+        // Allow opacity modifiers like bg-overlay/20 by using <alpha-value>
+        overlay: 'rgb(177 73 18 / <alpha-value>)',
       },
         fontFamily: {
           sans: ['var(--font-sans)', 'sans-serif'],

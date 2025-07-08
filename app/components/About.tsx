@@ -8,7 +8,7 @@ export default function About() {
   return (
     <section className="relative flex flex-col w-full py-8 md:py-10 lg:py-14 2xl:py-16">
       <div className="flex flex-col xl:flex-row xl:items-stretch w-full xl:h-[60vh]">
-        <div className="relative w-full h-[50vh] xl:h-full xl:w-3/5 xl:order-1">
+        <div className="relative w-full h-[50vh] xl:h-full xl:w-3/5 ">
           <video
             className="object-cover w-full h-full"
             loop
@@ -18,9 +18,9 @@ export default function About() {
             poster="/images/poster1.webp"
             autoPlay
           >
-            <source src="/hero0.webm" type="video/webm" />
+            <source src="/hero2.mp4" type="video/mp4" />
           </video>
-          <div className="absolute inset-0 pointer-events-none" />
+          <div className="absolute inset-0 pointer-events-none bg-overlay/20" />
         </div>
         <div
           className={`relative flex-1 flex flex-col  px-8 pt-8 text-graphite xl:w-2/5 xl:h-full  xl:items-center xl:text-left xl:pl-24 xl:pr-24  justify-center`}

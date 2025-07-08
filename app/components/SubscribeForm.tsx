@@ -54,9 +54,9 @@ export default function SubscribeForm() {
             poster="/images/poster1.webp"
             autoPlay
           >
-            <source src="/hero0.webm" type="video/webm" />
+            <source src="/hero4.mp4" type="video/mp4" />
           </video>
-          <div className="absolute inset-0 pointer-events-none" />
+          <div className="absolute bg-overlay/20 inset-0 pointer-events-none" />
         </div>
         {/* Форма */}
         <div className="relative flex-1 flex flex-col p-8 text-graphite xl:w-2/5 xl:h-full xl:items-center xl:text-left xl:pl-24 xl:pr-24 xl:order-1 justify-center">

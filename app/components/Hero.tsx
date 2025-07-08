@@ -9,7 +9,7 @@ import {
   PauseIcon,
 } from "@heroicons/react/24/solid";
 import { motion } from "framer-motion";
-import hero3 from "@/public/images/hero3.webp";
+import hero4 from "@/public/images/hero4.webp";
 import hero8 from "@/public/images/poster1.webp";
 
 interface HeroSlide {
@@ -32,16 +32,26 @@ const heroSlidesData: HeroSlide[] = [
     title: "Protective Facial Lotion SPF25",
     description:
       "A broad-spectrum moisturising lotion that shields skin from UVA and UVB rays.",
-  },{
+  },
+  {
+    id: 2,
+    imageSrc: hero8, // poster
+    videoSrc: "/hero1.mp4",
+    altText: "Protective Facial Lotion video",
+    subtitle: "Daily protection",
+    title: "Protective Facial Lotion SPF25",
+    description:
+      "A broad-spectrum moisturising lotion that shields skin from UVA and UVB rays.",
+  },
+  {
     id: 1,
-    imageSrc: hero3,
+    imageSrc: hero4,
     altText: "Lucent Facial Refiner bottle",
     subtitle: "The skin—in its best light",
     title: "Introducing Lucent Facial Refiner",
     description:
       "A new gently exfoliatings mask to even the texture and appearance of the skin.",
   },
-  
 ];
 
 export default function Hero() {
@@ -124,7 +134,11 @@ export default function Hero() {
                   >
                     <source
                       src={slide.videoSrc}
-                      type={slide.videoSrc.endsWith(".webm") ? "video/webm" : "video/mp4"}
+                      type={
+                        slide.videoSrc.endsWith(".webm")
+                          ? "video/webm"
+                          : "video/mp4"
+                      }
                     />
                   </video>
                 ) : (
@@ -142,7 +156,7 @@ export default function Hero() {
               </motion.div>
             );
           })}
-          <div className="absolute inset-0 pointer-events-none"></div>
+          <div className="absolute inset-0 pointer-events-none bg-overlay/20 z-10"></div>
         </div>
 
         {/* Мобильная версия: контент снизу, десктоп: логотип слева */}
