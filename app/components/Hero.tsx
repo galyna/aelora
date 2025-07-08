@@ -93,6 +93,7 @@ export default function Hero() {
                   src={slide.imageSrc}
                   alt={slide.altText}
                   priority={isFirst}
+                  fetchPriority={isFirst ? "high" : undefined}
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 50vw"
                   className="object-cover"
                   fill
@@ -161,7 +162,7 @@ export default function Hero() {
                 el?.scrollIntoView({ behavior: "smooth" });
               }}
               className="w-[260px] px-6 py-4 mt-6 shadow-sm hover:shadow-md hover:opacity-100 opacity-95 transition-all duration-200
-               border-2 border-olive text-olive uppercase tracking-widest font-bold text-sm  hover:bg-oliveLight"
+               border-2 border-olive text-oliveDark uppercase tracking-widest font-bold text-sm  hover:bg-oliveLight"
             >
               Join the ritual
             </button>

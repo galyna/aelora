@@ -119,7 +119,7 @@ export default function SubscribeForm() {
                   type="submit"
                   disabled={status === "loading"}
                   className="w-full md:w-[260px] px-6 py-4 mt-6 shadow-sm hover:shadow-md hover:opacity-100 opacity-95 transition-all duration-200
-               border-2 border-olive text-olive uppercase tracking-widest font-bold text-sm  hover:bg-oliveLight "
+                border-2 border-olive text-oliveDark uppercase tracking-widest font-bold text-sm  hover:bg-oliveLight "
                 >
                   {status === "loading" ? (
                     <>

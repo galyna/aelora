@@ -2,21 +2,9 @@ import "./globals.css";
 import Header from "./components/Header";
 import { Metadata } from "next";
 import Footer from "./components/Footer";
-import { DM_Serif_Display, DM_Sans } from "next/font/google";
 import { siteConfig } from "./lib/config";
 
-const dmSerif = DM_Serif_Display({ 
-  subsets: ["latin"],
-  weight: ['400'],
-  variable: '--font-dm-serif'
-});
 
-const dmSans = DM_Sans({
-  subsets: ["latin"],
-  weight: ['400', '500'],
-  variable: '--font-dm-sans',
-  display: "swap",
-});
 
 export const metadata: Metadata = {
   title: 'Aelora – Skincare Inspired by Nature',
@@ -49,7 +37,7 @@ export const metadata: Metadata = {
 export const viewport = {
   width: 'device-width',
   initialScale: 1,
-  maximumScale: 1,
+  maximumScale: 5,
 };
 
 
@@ -59,7 +47,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${dmSerif.variable} ${dmSans.variable} bg-background`}>
+    <html lang="en" className={`bg-background`}>
       <body>
         <Header />
         {children}
