@@ -1,11 +1,9 @@
 "use client";
 
 import { useForm } from "react-hook-form";
-import Image from "next/image";
 import { supabase } from "../lib/supabaseClient";
 import { useState } from "react";
 import { motion } from "framer-motion";
-import heroImage from "@/public/images/hero6.webp";
 
 type FormData = {
   email: string;
@@ -45,15 +43,19 @@ export default function SubscribeForm() {
       className="relative flex flex-col w-full py-8 md:py-10 lg:py-14  2xl:py-16"
     >
       <div className="flex flex-col xl:flex-row xl:items-stretch w-full xl:h-[60vh]">
-        {/* Картинка: сверху на мобилках, справа на xl+ */}
+        {/* Видео: сверху на мобилках, справа на xl+ */}
         <div className="relative w-full h-[50vh] xl:h-full xl:w-3/5 xl:order-2">
-          <Image
-            src={heroImage}
-            alt="Subscribe visual"
-            fill
-            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 70vw, 7s0vw"
-            className="object-cover"
-          />
+          <video
+            className="object-cover w-full h-full"
+            loop
+            muted
+            playsInline
+            preload="metadata"
+            poster="/images/poster1.webp"
+            autoPlay
+          >
+            <source src="/hero0.webm" type="video/webm" />
+          </video>
           <div className="absolute inset-0 pointer-events-none" />
         </div>
         {/* Форма */}

@@ -1,7 +1,7 @@
 "use client";
 
 import Image, { StaticImageData } from "next/image";
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import {
   ChevronLeftIcon,
   ChevronRightIcon,
@@ -10,11 +10,12 @@ import {
 } from "@heroicons/react/24/solid";
 import { motion } from "framer-motion";
 import hero3 from "@/public/images/hero3.webp";
-import hero8 from "@/public/images/hero8.webp";
+import hero8 from "@/public/images/poster1.webp";
 
 interface HeroSlide {
   id: number;
-  imageSrc: StaticImageData;
+  imageSrc: StaticImageData; // используется как poster, если есть video
+  videoSrc?: string; // если задано, слайд видео
   altText: string;
   subtitle: string;
   title: string;
@@ -23,6 +24,15 @@ interface HeroSlide {
 
 const heroSlidesData: HeroSlide[] = [
   {
+    id: 3,
+    imageSrc: hero8, // poster
+    videoSrc: "/h1.mp4",
+    altText: "Protective Facial Lotion video",
+    subtitle: "Daily protection",
+    title: "Protective Facial Lotion SPF25",
+    description:
+      "A broad-spectrum moisturising lotion that shields skin from UVA and UVB rays.",
+  },{
     id: 1,
     imageSrc: hero3,
     altText: "Lucent Facial Refiner bottle",
@@ -31,20 +41,15 @@ const heroSlidesData: HeroSlide[] = [
     description:
       "A new gently exfoliatings mask to even the texture and appearance of the skin.",
   },
-  {
-    id: 3,
-    imageSrc: hero8,
-    altText: "Yet Another Product",
-    subtitle: "Daily protection",
-    title: "Protective Facial Lotion SPF25",
-    description:
-      "A broad-spectrum moisturising lotion that shields skin from UVA and UVB rays.",
-  },
+  
 ];
 
 export default function Hero() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isPlaying, setIsPlaying] = useState(true);
+
+  // refs to video elements per slide (only filled for slides that have video)
+  const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
 
   const currentSlide = heroSlidesData[currentIndex];
 
@@ -72,6 +77,19 @@ export default function Hero() {
     return () => clearTimeout(timer);
   }, [currentIndex, isPlaying, handleNext]);
 
+  // Play / pause videos based on carousel state
+  useEffect(() => {
+    videoRefs.current.forEach((video, idx) => {
+      if (!video) return;
+      if (idx === currentIndex && isPlaying) {
+        // try to play, ignore errors from browsers that block autoplay
+        video.play().catch(() => {});
+      } else {
+        video.pause();
+      }
+    });
+  }, [currentIndex, isPlaying]);
+
   return (
     <section className="relative flex flex-col w-full border-t  border-gray-200">
       <div className="flex flex-col xl:h-[60vh] xl:flex-row xl:items-stretch w-full">
@@ -89,16 +107,38 @@ export default function Hero() {
                 transition={{ duration: isFirst ? 0 : 0.8, ease: "easeInOut" }}
                 className="absolute inset-0"
               >
-                <Image
-                  src={slide.imageSrc}
-                  alt={slide.altText}
-                  priority={isFirst}
-                  fetchPriority={isFirst ? "high" : undefined}
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 50vw"
-                  className="object-cover"
-                  fill
-                  placeholder="blur"
-                />
+                {slide.videoSrc ? (
+                  <video
+                    className="object-cover w-full h-full"
+                    ref={(el) => {
+                      videoRefs.current[index] = el;
+                    }}
+                    loop
+                    muted
+                    playsInline
+                    autoPlay={isActive && isPlaying}
+                    preload={isActive ? "metadata" : "none"}
+                    poster={slide.imageSrc.src}
+                    width={600}
+                    height={300}
+                  >
+                    <source
+                      src={slide.videoSrc}
+                      type={slide.videoSrc.endsWith(".webm") ? "video/webm" : "video/mp4"}
+                    />
+                  </video>
+                ) : (
+                  <Image
+                    src={slide.imageSrc}
+                    alt={slide.altText}
+                    priority={isFirst}
+                    fetchPriority={isFirst ? "high" : undefined}
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 50vw"
+                    className="object-cover"
+                    fill
+                    placeholder="blur"
+                  />
+                )}
               </motion.div>
             );
           })}
