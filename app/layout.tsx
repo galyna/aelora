@@ -13,7 +13,7 @@ const dmSerif = DM_Serif_Display({
 
 const dmSans = DM_Sans({
   subsets: ["latin"],
-  weight: ['400', '500', '700'],
+  weight: ['400', '500'],
   variable: '--font-dm-sans',
   display: "swap",
 });
@@ -26,14 +26,6 @@ export const metadata: Metadata = {
     description: 'Discover Aelora: natural skincare rituals for radiant skin. Vegan, award-winning, and consciously formulated for daily care.',
     url: siteConfig.url,
     siteName: 'Aelora',
-    images: [
-      {
-        url: `${siteConfig.url}/og-preview.jpg`,
-        width: 1200,
-        height: 630,
-        alt: 'Aelora – Natural Skincare',
-      },
-    ],
     locale: 'en_US',
     type: 'website',
     
@@ -45,11 +37,6 @@ export const metadata: Metadata = {
     images: [`${siteConfig.url}/og-preview.jpg`],
   },
   metadataBase: new URL(siteConfig.url),
-  viewport: {
-    width: 'device-width',
-    initialScale: 1,
-    maximumScale: 1,
-  },
   robots: {
     index: true,
     follow: true,
@@ -57,6 +44,12 @@ export const metadata: Metadata = {
   icons: {
     icon: '/favicon.ico',
   },
+};
+
+export const viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 1,
 };
 
 

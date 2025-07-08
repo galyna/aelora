@@ -19,7 +19,6 @@ export default function About() {
             fill
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 70vw, 70vw"
             className="object-cover"
-            priority
           />
           <div className="absolute inset-0 pointer-events-none" />
         </div>

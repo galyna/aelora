@@ -50,7 +50,7 @@ function useIs2xl() {
   return is2xl;
 }
 
-function GalleryItem({ item, index, visibleSlides, className = "" }: { item: GalleryItemType, index: number, visibleSlides: number, className?: string }) {
+function GalleryItem({ item,  visibleSlides, className = "" }: { item: GalleryItemType, index: number, visibleSlides: number, className?: string }) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-10% 0px" });
   return (
@@ -74,7 +74,7 @@ function GalleryItem({ item, index, visibleSlides, className = "" }: { item: Gal
               height={300}
               sizes="(max-width: 967px) 99vw, (max-width: 1535px) 25vw, 25vw"
               className="object-contain max-h-full w-auto"
-              priority={index < visibleSlides}
+            
             />
           </motion.div>
         </div>

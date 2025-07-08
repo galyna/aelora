@@ -53,7 +53,6 @@ export default function SubscribeForm() {
             fill
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 70vw, 7s0vw"
             className="object-cover"
-            priority
           />
           <div className="absolute inset-0 pointer-events-none" />
         </div>
