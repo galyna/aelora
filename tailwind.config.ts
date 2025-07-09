@@ -14,12 +14,15 @@ const config: Config = {
         background: '#FFFEF2',
         linen: '#F6F5E8',
         olive: '#7a8648',
+        oliveDark: '#55602c',
         oliveLight: '#f0f0e4',
+        // Allow opacity modifiers like bg-overlay/20 by using <alpha-value>
+        overlay: 'rgb(177 73 18 / <alpha-value>)',
       },
-      fontFamily: {
-        sans: ['var(--font-dm-sans)'],
-        serif: ['var(--font-dm-serif)'],
-      },
+        fontFamily: {
+          sans: ['var(--font-sans)', 'sans-serif'],
+          serif: ['var(--font-serif)', 'serif'],
+        },
     },
   },
   plugins: [],

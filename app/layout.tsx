@@ -2,21 +2,9 @@ import "./globals.css";
 import Header from "./components/Header";
 import { Metadata } from "next";
 import Footer from "./components/Footer";
-import { DM_Serif_Display, DM_Sans } from "next/font/google";
 import { siteConfig } from "./lib/config";
 
-const dmSerif = DM_Serif_Display({ 
-  subsets: ["latin"],
-  weight: ['400'],
-  variable: '--font-dm-serif'
-});
 
-const dmSans = DM_Sans({
-  subsets: ["latin"],
-  weight: ['400', '500', '700'],
-  variable: '--font-dm-sans',
-  display: "swap",
-});
 
 export const metadata: Metadata = {
   title: 'Aelora – Skincare Inspired by Nature',
@@ -26,14 +14,6 @@ export const metadata: Metadata = {
     description: 'Discover Aelora: natural skincare rituals for radiant skin. Vegan, award-winning, and consciously formulated for daily care.',
     url: siteConfig.url,
     siteName: 'Aelora',
-    images: [
-      {
-        url: `${siteConfig.url}/og-preview.jpg`,
-        width: 1200,
-        height: 630,
-        alt: 'Aelora – Natural Skincare',
-      },
-    ],
     locale: 'en_US',
     type: 'website',
     
@@ -45,11 +25,6 @@ export const metadata: Metadata = {
     images: [`${siteConfig.url}/og-preview.jpg`],
   },
   metadataBase: new URL(siteConfig.url),
-  viewport: {
-    width: 'device-width',
-    initialScale: 1,
-    maximumScale: 1,
-  },
   robots: {
     index: true,
     follow: true,
@@ -59,6 +34,12 @@ export const metadata: Metadata = {
   },
 };
 
+export const viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 5,
+};
+
 
 export default function RootLayout({
   children,
@@ -66,7 +47,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${dmSerif.variable} ${dmSans.variable} bg-background`}>
+    <html lang="en" className={`bg-background`}>
       <body>
         <Header />
         {children}

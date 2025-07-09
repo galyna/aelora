@@ -1,7 +1,7 @@
 "use client";
 
 import Image, { StaticImageData } from "next/image";
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import {
   ChevronLeftIcon,
   ChevronRightIcon,
@@ -9,12 +9,14 @@ import {
   PauseIcon,
 } from "@heroicons/react/24/solid";
 import { motion } from "framer-motion";
-import hero3 from "@/public/images/hero3.webp";
-import hero8 from "@/public/images/hero8.webp";
+import hero1 from "@/public/images/poster-hero1.webp";
+import hero2 from "@/public/images/poster-hero2.webp";
+import hero4 from "@/public/images/hero4.webp";
 
 interface HeroSlide {
   id: number;
-  imageSrc: StaticImageData;
+  imageSrc: StaticImageData; // используется как poster, если есть video
+  videoSrc?: string; // если задано, слайд видео
   altText: string;
   subtitle: string;
   title: string;
@@ -23,28 +25,42 @@ interface HeroSlide {
 
 const heroSlidesData: HeroSlide[] = [
   {
-    id: 1,
-    imageSrc: hero3,
+    id: 3,
+    imageSrc: hero1, // poster
+    videoSrc: "/hero1.mp4",
     altText: "Lucent Facial Refiner bottle",
-    subtitle: "The skin—in its best light",
+    subtitle: "Daily protection",
     title: "Introducing Lucent Facial Refiner",
     description:
-      "A new gently exfoliatings mask to even the texture and appearance of the skin.",
+      "Brighten and renew your skin with this lightweight facial serum for daily radiance.",
   },
   {
-    id: 3,
-    imageSrc: hero8,
-    altText: "Yet Another Product",
-    subtitle: "Daily protection",
-    title: "Protective Facial Lotion SPF25",
+    id: 2,
+    imageSrc: hero2, // poster
+    videoSrc: "/hero2.mp4",
+    altText: "Protective Facial Lotion video",
+    subtitle: "Gentle cleansing",
+    title: "Oat & Honey Artisan Soap",
     description:
-      "A broad-spectrum moisturising lotion that shields skin from UVA and UVB rays.",
+      "Handcrafted soap with oats and honey to gently cleanse and deeply nourish your skin.",
+  },
+  {
+    id: 1,
+    imageSrc: hero4,
+    altText: "Lucent Facial Refiner bottle",
+    subtitle: "The skin—in its best light",
+    title: "Bathroom Essentials Bundle",
+    description:
+      "A premium set for daily body care—gentle cleansing, freshness, and smooth skin.",
   },
 ];
 
 export default function Hero() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isPlaying, setIsPlaying] = useState(true);
+
+  // refs to video elements per slide (only filled for slides that have video)
+  const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
 
   const currentSlide = heroSlidesData[currentIndex];
 
@@ -72,6 +88,19 @@ export default function Hero() {
     return () => clearTimeout(timer);
   }, [currentIndex, isPlaying, handleNext]);
 
+  // Play / pause videos based on carousel state
+  useEffect(() => {
+    videoRefs.current.forEach((video, idx) => {
+      if (!video) return;
+      if (idx === currentIndex && isPlaying) {
+        // try to play, ignore errors from browsers that block autoplay
+        video.play().catch(() => {});
+      } else {
+        video.pause();
+      }
+    });
+  }, [currentIndex, isPlaying]);
+
   return (
     <section className="relative flex flex-col w-full border-t  border-gray-200">
       <div className="flex flex-col xl:h-[60vh] xl:flex-row xl:items-stretch w-full">
@@ -89,19 +118,46 @@ export default function Hero() {
                 transition={{ duration: isFirst ? 0 : 0.8, ease: "easeInOut" }}
                 className="absolute inset-0"
               >
-                <Image
-                  src={slide.imageSrc}
-                  alt={slide.altText}
-                  priority={isFirst}
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 50vw"
-                  className="object-cover"
-                  fill
-                  placeholder="blur"
-                />
+                {slide.videoSrc ? (
+                  <video
+                    className="object-cover w-full h-full"
+                    ref={(el) => {
+                      videoRefs.current[index] = el;
+                    }}
+                    loop
+                    muted
+                    playsInline
+                    autoPlay={isActive && isPlaying}
+                    preload={isActive ? "metadata" : "none"}
+                    poster={slide.imageSrc.src}
+                    width={600}
+                    height={300}
+                  >
+                    <source
+                      src={slide.videoSrc}
+                      type={
+                        slide.videoSrc.endsWith(".webm")
+                          ? "video/webm"
+                          : "video/mp4"
+                      }
+                    />
+                  </video>
+                ) : (
+                  <Image
+                    src={slide.imageSrc}
+                    alt={slide.altText}
+                    priority={isFirst}
+                    fetchPriority={isFirst ? "high" : undefined}
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 50vw"
+                    className="object-cover"
+                    fill
+                    placeholder="blur"
+                  />
+                )}
               </motion.div>
             );
           })}
-          <div className="absolute inset-0 pointer-events-none"></div>
+          <div className="absolute inset-0 pointer-events-none bg-overlay/20 z-10"></div>
         </div>
 
         {/* Мобильная версия: контент снизу, десктоп: логотип слева */}
@@ -161,7 +217,7 @@ export default function Hero() {
                 el?.scrollIntoView({ behavior: "smooth" });
               }}
               className="w-[260px] px-6 py-4 mt-6 shadow-sm hover:shadow-md hover:opacity-100 opacity-95 transition-all duration-200
-               border-2 border-olive text-olive uppercase tracking-widest font-bold text-sm  hover:bg-oliveLight"
+               border-2 border-olive text-oliveDark uppercase tracking-widest font-bold text-sm  hover:bg-oliveLight"
             >
               Join the ritual
             </button>
