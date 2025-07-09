@@ -15,10 +15,10 @@ export default function About() {
             muted
             playsInline
             preload="metadata"
-            poster="/images/poster1.webp"
+            poster="/images/about.webp"
             autoPlay
           >
-            <source src="/hero2.mp4" type="video/mp4" />
+            <source src="/about.mp4" type="video/mp4" />
           </video>
           <div className="absolute inset-0 pointer-events-none bg-overlay/20" />
         </div>

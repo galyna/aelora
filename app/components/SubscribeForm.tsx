@@ -51,10 +51,10 @@ export default function SubscribeForm() {
             muted
             playsInline
             preload="metadata"
-            poster="/images/poster1.webp"
+            poster="/images/poster-subscribe.webp"
             autoPlay
           >
-            <source src="/hero4.mp4" type="video/mp4" />
+            <source src="/subscribe.mp4" type="video/mp4" />
           </video>
           <div className="absolute bg-overlay/20 inset-0 pointer-events-none" />
         </div>

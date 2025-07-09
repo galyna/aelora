@@ -9,8 +9,9 @@ import {
   PauseIcon,
 } from "@heroicons/react/24/solid";
 import { motion } from "framer-motion";
+import hero1 from "@/public/images/poster-hero1.webp";
+import hero2 from "@/public/images/poster-hero2.webp";
 import hero4 from "@/public/images/hero4.webp";
-import hero8 from "@/public/images/poster1.webp";
 
 interface HeroSlide {
   id: number;
@@ -25,32 +26,32 @@ interface HeroSlide {
 const heroSlidesData: HeroSlide[] = [
   {
     id: 3,
-    imageSrc: hero8, // poster
-    videoSrc: "/h1.mp4",
-    altText: "Protective Facial Lotion video",
+    imageSrc: hero1, // poster
+    videoSrc: "/hero1.mp4",
+    altText: "Lucent Facial Refiner bottle",
     subtitle: "Daily protection",
-    title: "Protective Facial Lotion SPF25",
+    title: "Introducing Lucent Facial Refiner",
     description:
-      "A broad-spectrum moisturising lotion that shields skin from UVA and UVB rays.",
+      "Brighten and renew your skin with this lightweight facial serum for daily radiance.",
   },
   {
     id: 2,
-    imageSrc: hero8, // poster
-    videoSrc: "/hero1.mp4",
+    imageSrc: hero2, // poster
+    videoSrc: "/hero2.mp4",
     altText: "Protective Facial Lotion video",
-    subtitle: "Daily protection",
-    title: "Protective Facial Lotion SPF25",
+    subtitle: "Gentle cleansing",
+    title: "Oat & Honey Artisan Soap",
     description:
-      "A broad-spectrum moisturising lotion that shields skin from UVA and UVB rays.",
+      "Handcrafted soap with oats and honey to gently cleanse and deeply nourish your skin.",
   },
   {
     id: 1,
     imageSrc: hero4,
     altText: "Lucent Facial Refiner bottle",
     subtitle: "The skin—in its best light",
-    title: "Introducing Lucent Facial Refiner",
+    title: "Bathroom Essentials Bundle",
     description:
-      "A new gently exfoliatings mask to even the texture and appearance of the skin.",
+      "A premium set for daily body care—gentle cleansing, freshness, and smooth skin.",
   },
 ];
 
