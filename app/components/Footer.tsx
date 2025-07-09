@@ -4,12 +4,12 @@ import { siteConfig } from "../lib/config";
 
 export default function Footer() {
   return (
-    <footer className="bg-graphite text-white">
-      <div className="max-w-screen-xl mx-auto px-8 py-16 grid grid-cols-1 md:grid-cols-3 gap-8">
+    <footer className="bg-graphite text-white py-12">
+      <div className="max-w-screen-xl mx-auto px-8 py-16 grid grid-cols-1 md:grid-cols-3 gap-14">
         {/* Column 1 — logo & motto */}
-        <div className="space-y-4 text-center md:text-left">
+        <div className="space-y-6 text-center md:text-left">
           <h3 className="text-3xl font-serif">{siteConfig.name}</h3>
-          <p className="max-w-sm text-lg leading-relaxed">
+          <p className=" text-lg leading-relaxed text-center md:text-left w-full">
             Elevate your body, embrace your glow.
           </p>
         </div>
@@ -28,7 +28,7 @@ export default function Footer() {
         </nav>
 
         {/* Column 3 — social icons & copyright */}
-        <div className="flex flex-col items-center md:items-start space-y-4 text-center md:text-left">
+        <div className="flex flex-col items-center md:items-start space-y-6 text-center md:text-left">
           <div className="flex justify-center md:justify-start space-x-6 text-2xl">
             <a
               href={siteConfig.links.instagram}
