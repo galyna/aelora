@@ -108,3 +108,4 @@ Frontend / UI Developer
 
 📧 galynakrupska9@gmail.com  
 🌐 [LinkedIn](hhttps://www.linkedin.com/in/galyna-krupska-398a3729/)  
+🐙 [GitHub](https://github.com/galynakrupska)
